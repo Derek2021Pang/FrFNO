@@ -1,0 +1,20 @@
+=== B1 FrFNO full regression (NTR=128, STEPS=8000, NTEST=48) ===
+training data: 10368 samples, MEAN=0.0051 SV=0.2266, 19.9s
+test data @17^2 ready
+test data @65^2 ready
+test data @129^2 ready
+build_prop_table (3 resolutions): 9.09s (1-D table cached, render per res)
+  step 2000/8000 loss=0.00038
+  step 4000/8000 loss=0.00396
+  step 6000/8000 loss=0.00032
+  step 8000/8000 loss=0.00026
+training: 243.2s
+----------------------------------------------------------------------
+resolution      new (1-D)    old (2-D)         diff
+17^2               1.720%       1.808%    8.79e-02
+65^2               8.304%       7.493%    8.11e-01
+129^2             10.227%       9.013%    1.21e+00
+----------------------------------------------------------------------
+build=9.09s train=243.2s
+Regression check done. Compare "diff" column above against old headline numbers (1.808/7.493/9.013 %).
+saved -> C:\Users\Dell\Desktop\FrFNO\b1_frfno_regression_result.txt

@@ -1,0 +1,21 @@
+Reaction-diffusion operator-transfer (Dirichlet DST, T=0.02; mechanisms ['L', 'F', 'AC'])
+train Nx=16 internal 15^2, NTR=64 steps=3000 order 3x3, NTE=24, res=[(16, 400), (32, 800), (64, 1600)]
+regime: L changes the linear solution by 0.0% (at alpha=.85,s=.75)
+regime: F changes the linear solution by 16.2% (at alpha=.85,s=.75)
+regime: AC changes the linear solution by 13.8% (at alpha=.85,s=.75)
+[L/FrFNO] 16:1.708% 32:1.763% 64:1.821% (44.9s)
+[L/FNO] 16:18.710% 32:23.241% 64:26.488% (46.6s)
+[F/FrFNO] 16:3.146% 32:3.687% 64:4.077% (44.2s)
+[F/FNO] 16:18.255% 32:22.991% 64:26.368% (43.6s)
+[AC/FrFNO] 16:3.217% 32:3.541% 64:3.796% (42.5s)
+[AC/FNO] 16:18.516% 32:23.235% 64:26.607% (44.4s)
+
+===== reaction-diffusion summary: relL2 (%) =====
+mech model          16    32(ZS)    64(ZS)    train_s
+L   FrFNO      1.708%    1.763%    1.821%      44.9
+L   FNO       18.710%   23.241%   26.488%      46.6
+F   FrFNO      3.146%    3.687%    4.077%      44.2
+F   FNO       18.255%   22.991%   26.368%      43.6
+AC  FrFNO      3.217%    3.541%    3.796%      42.5
+AC  FNO       18.516%   23.235%   26.607%      44.4
+total 898.6s

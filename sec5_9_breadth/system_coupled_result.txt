@@ -1,0 +1,13 @@
+Case (iii): 2-comp fractional system with non-symmetric J=[[1.2, 0.8], [0.3, 0.6]]
+eigenvalues mu=[1.4745, 0.3255] (positive real); V real; T=0.05 c0=1
+regime: non-symmetric coupling J changes the J=0 linear solution by 10.2%
+[FrFNO-full] mean 4.530/4.429/4.513 (u 4.562/4.477/4.559 v 4.498/4.380/4.467) 62.7s
+[FrFNO-diag(ablation)] mean 5.073/5.108/5.275 (u 5.449/5.519/5.705 v 4.696/4.697/4.844) 56.2s
+[FNO] mean 29.560/33.983/36.494 (u 29.886/34.402/36.938 v 29.235/33.564/36.050) 54.3s
+
+===== non-symmetric coupled system: component-mean relL2 (%) =====
+model                         16    32(ZS)    64(ZS)   train_s
+FrFNO-full                4.530%    4.429%    4.513%     62.7
+FrFNO-diag(ablation)      5.073%    5.108%    5.275%     56.2
+FNO                      29.560%   33.983%   36.494%     54.3
+total 591.5s

@@ -1,0 +1,111 @@
+==============================================================================
+B2 long-T (T=0.06) component ablation, mid-upper scale
+NTR=128 STEPS=5000 NTEST=32 beta=3 NL_NT=1600, variants=6
+==============================================================================
+
+[1/4] Training ground truth (9x9 orders x 128 fields, 17x17, T=0.06)...
+  10368 samples, MEAN=0.0035 SV=0.1312, 83.0s
+
+[2/4] Propagator tables (Nt=1600)...
+  PT[16] built
+  PT[64] built
+  PT[128] built
+
+[3/4] Shared test ground truth (32 samples x 3 tiers)...
+  test 17x17 done
+  test 65x65 done
+  test 129x129 done
+
+[4/4] Train + evaluate each variant...
+
+--- full (in=7, fd=2, cond=True, residual=True) ---
+  [full] step 0/5000  loss 1.56705
+  [full] step 1000/5000  loss 0.01066
+  [full] step 2000/5000  loss 0.00797
+  [full] step 3000/5000  loss 0.00449
+  [full] step 4000/5000  loss 0.00441
+  [full] step 5000/5000  loss 0.00083
+  params 1880.8K, train 145.3s
+   17x17  mean=  5.090% median=  5.198%
+   65x65  mean= 20.130% median= 19.701%
+  129x129 mean= 22.694% median= 22.924%
+
+--- no_ub (in=2, fd=2, cond=True, residual=False) ---
+  [no_ub] step 0/5000  loss 0.95331
+  [no_ub] step 1000/5000  loss 0.00535
+  [no_ub] step 2000/5000  loss 0.00236
+  [no_ub] step 3000/5000  loss 0.00496
+  [no_ub] step 4000/5000  loss 0.00305
+  [no_ub] step 5000/5000  loss 0.00058
+  params 1880.2K, train 92.1s
+   17x17  mean=  4.523% median=  3.938%
+   65x65  mean= 29.094% median= 28.855%
+  129x129 mean= 34.987% median= 33.252%
+
+--- no_dyn (in=7, fd=0, cond=True, residual=True) ---
+  [no_dyn] step 0/5000  loss 1.56441
+  [no_dyn] step 1000/5000  loss 0.00528
+  [no_dyn] step 2000/5000  loss 0.00758
+  [no_dyn] step 3000/5000  loss 0.00566
+  [no_dyn] step 4000/5000  loss 0.00479
+  [no_dyn] step 5000/5000  loss 0.00084
+  params 1880.6K, train 140.0s
+   17x17  mean=  5.351% median=  5.102%
+   65x65  mean= 23.121% median= 22.358%
+  129x129 mean= 25.330% median= 25.215%
+
+--- no_nb (in=3, fd=2, cond=True, residual=True) ---
+  [no_nb] step 0/5000  loss 1.57918
+  [no_nb] step 1000/5000  loss 0.00645
+  [no_nb] step 2000/5000  loss 0.00776
+  [no_nb] step 3000/5000  loss 0.00779
+  [no_nb] step 4000/5000  loss 0.00533
+  [no_nb] step 5000/5000  loss 0.00094
+  params 1880.3K, train 100.8s
+   17x17  mean=  5.203% median=  4.910%
+   65x65  mean= 23.913% median= 23.019%
+  129x129 mean= 26.434% median= 26.079%
+
+--- direct (in=7, fd=2, cond=True, residual=False) ---
+  [direct] step 0/5000  loss 0.93504
+  [direct] step 1000/5000  loss 0.00289
+  [direct] step 2000/5000  loss 0.00165
+  [direct] step 3000/5000  loss 0.00280
+  [direct] step 4000/5000  loss 0.00312
+  [direct] step 5000/5000  loss 0.00061
+  params 1880.8K, train 143.4s
+   17x17  mean=  4.354% median=  3.943%
+   65x65  mean= 15.747% median= 15.510%
+  129x129 mean= 19.497% median= 18.573%
+
+--- no_cond (in=7, fd=2, cond=False, residual=True) ---
+  [no_cond] step 0/5000  loss 1.56435
+  [no_cond] step 1000/5000  loss 0.00798
+  [no_cond] step 2000/5000  loss 0.00734
+  [no_cond] step 3000/5000  loss 0.00584
+  [no_cond] step 4000/5000  loss 0.00438
+  [no_cond] step 5000/5000  loss 0.00079
+  params 1880.6K, train 142.5s
+   17x17  mean=  5.130% median=  4.756%
+   65x65  mean= 24.176% median= 23.606%
+  129x129 mean= 26.387% median= 26.999%
+
+==============================================================================
+SUMMARY  B2 T=0.06  (rel.L2 % , 32 test fields, 5000 steps)
+==============================================================================
+variant    in_ch     fd  cond  paramsK |      17^2      65^2     129^2
+full           7      2  True   1880.8 |     5.090    20.130    22.694
+no_ub          2      2  True   1880.2 |     4.523    29.094    34.987
+no_dyn         7      0  True   1880.6 |     5.351    23.121    25.330
+no_nb          3      2  True   1880.3 |     5.203    23.913    26.434
+direct         7      2  True   1880.8 |     4.354    15.747    19.497
+no_cond        7      2 False   1880.6 |     5.130    24.176    26.387
+
+Delta vs full at 129^2 (positive = removing component HURTS):
+  no_ub     17^2: -0.57   65^2: +8.96   129^2: +12.29 pp
+  no_dyn    17^2: +0.26   65^2: +2.99   129^2: +2.64 pp
+  no_nb     17^2: +0.11   65^2: +3.78   129^2: +3.74 pp
+  direct    17^2: -0.74   65^2: -4.38   129^2: -3.20 pp
+  no_cond   17^2: +0.04   65^2: +4.05   129^2: +3.69 pp
+
+Saved -> C:\Users\Dell\Desktop\FrFNO\b2_ablation_result.txt

@@ -1,0 +1,31 @@
+B4 training ground truth 10368 samples 22s (grid a 0.60-1.00, s 0.40-1.00)
+MEAN=0.0050 SV=0.2089
+  restore FrFNO skip training (restored)
+  [PINO    ] train 336s params 1880.2K
+  restore PDNO skip training (restored)
+  [CNO     ] train 206s params 2012.3K (official AdamW+L1)
+  restore DeepONet skip training (restored)
+  restore UNet skip training (restored)
+
+===== B4 integer-order (alpha,s)=(1,1), classical variable-coefficient viscous Burgers =====
+  [integer point 17^2] FrFNO=3.53% FNO=6.24% PINO=6.08% PDNO=5.11% CNO=5.79% DeepONet=16.15% UNet=1129.99%
+  [integer point 65^2] FrFNO=6.40% FNO=40.18% PINO=22.16% PDNO=10.54% CNO=11.69% DeepONet=17.85% UNet=816242.85%
+  [integer point 129^2] FrFNO=7.56% FNO=47.69% PINO=28.80% PDNO=12.22% CNO=12.90% DeepONet=18.49% UNet=1004163.29%
+
+===== B4 near-integer continuous neighborhood alpha,s~U[.9,1] =====
+  [near integer 17^2] FrFNO=2.85% FNO=5.22% PINO=5.30% PDNO=4.26% CNO=4.39% DeepONet=17.33% UNet=1072.82%
+  [near integer 65^2] FrFNO=5.73% FNO=38.95% PINO=21.26% PDNO=9.73% CNO=10.75% DeepONet=18.67% UNet=820837.65%
+  [near integer 129^2] FrFNO=6.87% FNO=46.16% PINO=27.51% PDNO=11.50% CNO=11.94% DeepONet=19.61% UNet=1002643.42%
+
+===== B4 summary relL2(%) =====
+--integer (1,1)
+resolution       FrFNO       FNO      PINO      PDNO       CNO  DeepONet      UNet
+17^2        3.530%    6.242%    6.084%    5.113%    5.795%   16.146% 1129.993%
+65^2        6.402%   40.178%   22.159%   10.539%   11.694%   17.847%816242.853%
+129^2       7.562%   47.685%   28.796%   12.220%   12.902%   18.494%1004163.290%
+--near-integer [.9,1]
+resolution       FrFNO       FNO      PINO      PDNO       CNO  DeepONet      UNet
+17^2        2.853%    5.216%    5.305%    4.259%    4.391%   17.331% 1072.820%
+65^2        5.728%   38.951%   21.261%    9.726%   10.748%   18.669%820837.651%
+129^2       6.871%   46.161%   27.511%   11.495%   11.939%   19.607%1002643.423%
+training time      0.0s    177.2s    336.2s      0.0s    206.1s      0.0s      0.0s

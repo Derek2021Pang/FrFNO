@@ -1,0 +1,6 @@
+[beta] beta=0.50 e_nl=3.0758e-02 (31.5s)
+[beta] beta=1.00 e_nl=6.0782e-02 (31.6s)
+[beta] beta=2.00 e_nl=1.1786e-01 (31.4s)
+[beta] beta=3.00 e_nl=1.7020e-01 (31.7s)
+[beta] beta=5.00 e_nl=2.5964e-01 (31.5s)
+[beta] e vs beta 线性 R2=0.9900; loglog 斜率=0.931 (命题1 非线性项期望≈1)

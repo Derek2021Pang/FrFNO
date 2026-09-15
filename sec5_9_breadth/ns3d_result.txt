@@ -1,0 +1,11 @@
+3D incompressible fractional NS, vector vorticity (with vortex stretching), T=0.1 nu=0.15
+div(w)=4.17e-05 (curl of vector potential), Biot-Savart div(u)=1.37e-06
+linear propagator consistency 3.45e-06
+regime: stretching+advection change the linear solution by 11.2%; params=2305.83K
+[FrFNO] vector-vorticity relL2 6.750/7.093/7.834 (12/16/24) 17.4s
+[FNO] vector-vorticity relL2 18.443/18.505/18.006 (12/16/24) 17.4s
+
+===== 3D vector-vorticity fractional NS: relL2 (%) =====
+FrFNO     6.750    7.093    7.834  train 17.4s
+FNO      18.443   18.505   18.006  train 17.4s
+total 70.1s

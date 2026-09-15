@@ -1,0 +1,13 @@
+2D incompressible fractional NS (vorticity-streamfunction), periodic FFT, T=0.15
+orders 3x3, viscosity grid [0.10000000149011612, 0.15000000596046448, 0.20000000298023224], NTR=64, steps=3000
+Biot-Savart divergence-free residual 1.03e-06
+linear (advection-off) propagator consistency 2.36e-06
+regime: vortex advection changes the linear solution by 13.0%; train SOL built
+[FrFNO] vort 1.714/2.245/2.909 |vel| 0.778/0.964/1.413 40.5s
+[FNO] vort 5.640/5.975/6.738 |vel| 3.014/3.215/3.464 40.8s
+
+===== fractional incompressible NS: vorticity relL2 (%) / velocity-magnitude relL2 (%) =====
+model          16(train)           32(ZS)           64(ZS)   train_s
+FrFNO     1.714/ 0.778   2.245/ 0.964   2.909/ 1.413     40.5
+FNO       5.640/ 3.014   5.975/ 3.215   6.738/ 3.464     40.8
+total 207.7s

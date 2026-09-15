@@ -1,0 +1,20 @@
+=== B2 FrFNO long-window regression (T=0.06, Nt_train=1600, NTR=128, STEPS=8000) ===
+training data: 10368 samples, MEAN=0.0035 SV=0.1312, 78.8s
+test data @17^2 (Nt=1600) ready
+test data @65^2 (Nt=3200) ready
+test data @129^2 (Nt=6400) ready
+build_prop_table (3 res, Nt=1600): 25.41s (1-D cached, render per res)
+  step 2000/8000 loss=0.00063
+  step 4000/8000 loss=0.03057
+  step 6000/8000 loss=0.00061
+  step 8000/8000 loss=0.00050
+training: 241.9s
+----------------------------------------------------------------------
+resolution      new (1-D)    old (2-D)         diff
+17^2               2.646%       2.521%    1.25e-01
+65^2               9.164%       7.807%    1.36e+00
+129^2             10.933%       9.384%    1.55e+00
+----------------------------------------------------------------------
+build=25.41s train=241.9s
+Regression check done. Compare "diff" column above against old headline numbers (2.521/7.807/9.384 %).
+saved -> C:\Users\Dell\Desktop\FrFNO\b2_frfno_regression_result.txt

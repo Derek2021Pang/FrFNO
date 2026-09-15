@@ -1,0 +1,42 @@
+Component-wise MMS code verification (device=cuda)
+
+=== (a) TEMPORAL L1 order (discrete diffusion, beta=0, T=0.20, Nx=32); theory 2-alpha ===
+alpha=0.60 (expect 1.40):
+   Nt= 16 relL2=1.998e-04
+   Nt= 32 relL2=7.663e-05   order=1.383
+   Nt= 64 relL2=2.926e-05   order=1.389
+   Nt=128 relL2=1.114e-05   order=1.393
+   Nt=256 relL2=4.236e-06   order=1.395
+   Nt=512 relL2=1.608e-06   order=1.397
+alpha=0.75 (expect 1.25):
+   Nt= 16 relL2=4.959e-04
+   Nt= 32 relL2=2.101e-04   order=1.239
+   Nt= 64 relL2=8.874e-05   order=1.244
+   Nt=128 relL2=3.740e-05   order=1.247
+   Nt=256 relL2=1.575e-05   order=1.248
+   Nt=512 relL2=6.625e-06   order=1.249
+alpha=1.00 (expect 1.00):
+   Nt= 16 relL2=2.052e-03
+   Nt= 32 relL2=1.036e-03   order=0.986
+   Nt= 64 relL2=5.206e-04   order=0.993
+   Nt=128 relL2=2.610e-04   order=0.996
+   Nt=256 relL2=1.306e-04   order=0.998
+   Nt=512 relL2=6.536e-05   order=0.999
+
+=== (b) SPATIAL order, nonlinear upwind beta=3 (discrete L1, Nt=200, alpha=s=.75,T=.02); ->1 ===
+   Nx= 16 h=0.06250 relL2=1.296e-02
+   Nx= 32 h=0.03125 relL2=6.792e-03   order=0.932
+   Nx= 64 h=0.01562 relL2=3.475e-03   order=0.967
+   Nx=128 h=0.00781 relL2=1.757e-03   order=0.984
+   Nx=256 h=0.00391 relL2=8.836e-04   order=0.992
+
+=== (c) SPATIAL order, diffusion only beta=0 (discrete L1, Nt=200, alpha=s=.75,T=.02); ->2 ===
+   Nx= 16 h=0.06250 relL2=9.502e-04
+   Nx= 32 h=0.03125 relL2=2.376e-04   order=2.000
+   Nx= 64 h=0.01562 relL2=5.940e-05   order=2.000
+   Nx=128 h=0.00781 relL2=1.485e-05   order=2.000
+   Nx=256 h=0.00391 relL2=3.712e-06   order=2.000
+
+=== production reference bound, fully continuous source, Nx=128,Nt=1600,beta=3 ===
+   T=0.015 total MMS relL2=1.506e-03
+   T=0.020 total MMS relL2=1.759e-03

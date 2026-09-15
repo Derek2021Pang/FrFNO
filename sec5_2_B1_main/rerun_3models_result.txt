@@ -1,0 +1,64 @@
+
+======================================================================
+CASE: B1 (T=0.015, beta=3, NTR=128, STEPS=8000, NTEST=48)
+======================================================================
+training data: 24s
+MEAN=0.0051 SV=0.2266
+--- Training FNO (field_dim=2) ---
+--- Training PINO (field_dim=2) ---
+--- Training CNO (AdamW+L1) ---
+weights saved to C:\Users\Dell\Desktop\FrFNO\b1_3models_weights.pt
+
+--- resolution 17^2(train) ---
+  FNO    rel L2 mean   2.662%  (train 180.4s)
+  PINO   rel L2 mean   2.710%  (train 338.7s)
+  CNO    rel L2 mean   2.686%  (train 206.0s)
+
+--- resolution 65^2(zero-shot) ---
+  FNO    rel L2 mean  20.221%  (train 180.4s)
+  PINO   rel L2 mean  12.883%  (train 338.7s)
+  CNO    rel L2 mean  14.851%  (train 206.0s)
+
+--- resolution 129^2(zero-shot) ---
+  FNO    rel L2 mean  23.463%  (train 180.4s)
+  PINO   rel L2 mean  15.057%  (train 338.7s)
+  CNO    rel L2 mean  17.076%  (train 206.0s)
+
+--- B1 SUMMARY ---
+resolution      FNO      PINO      CNO
+17^2            2.662%    2.710%    2.686%
+65^2           20.221%   12.883%   14.851%
+129^2          23.463%   15.057%   17.076%
+train time      180.4s   338.7s   206.0s
+
+======================================================================
+CASE: B2 (T=0.06, beta=3, NTR=128, STEPS=8000, NTEST=48)
+======================================================================
+training data: 85s
+MEAN=0.0035 SV=0.1312
+--- Training FNO (field_dim=2) ---
+--- Training PINO (field_dim=2) ---
+--- Training CNO (AdamW+L1) ---
+weights saved to C:\Users\Dell\Desktop\FrFNO\b2_3models_weights.pt
+
+--- resolution 17^2(train) ---
+  FNO    rel L2 mean   3.577%  (train 155.6s)
+  PINO   rel L2 mean   3.864%  (train 349.0s)
+  CNO    rel L2 mean   3.860%  (train 213.0s)
+
+--- resolution 65^2(zero-shot) ---
+  FNO    rel L2 mean  26.468%  (train 155.6s)
+  PINO   rel L2 mean  18.026%  (train 349.0s)
+  CNO    rel L2 mean  13.965%  (train 213.0s)
+
+--- resolution 129^2(zero-shot) ---
+  FNO    rel L2 mean  31.124%  (train 155.6s)
+  PINO   rel L2 mean  23.006%  (train 349.0s)
+  CNO    rel L2 mean  16.066%  (train 213.0s)
+
+--- B2 SUMMARY ---
+resolution      FNO      PINO      CNO
+17^2            3.577%    3.864%    3.860%
+65^2           26.468%   18.026%   13.965%
+129^2          31.124%   23.006%   16.066%
+train time      155.6s   349.0s   213.0s

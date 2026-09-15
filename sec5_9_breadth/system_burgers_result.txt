@@ -1,0 +1,11 @@
+2D two-component fractional vector Burgers system (Dirichlet DST, T=0.05)
+train 15^2 NTR=64 steps=3000 order 3x3 NTE=24 res=[(16, 400), (32, 800), (64, 1600)]
+regime: vector advection (U.grad)U changes the linear solution by 9.7% (a=.85,s=.75)
+[FrFNO] u: 7.997/7.909/8.104  v: 8.974/8.862/8.967  mean: 8.486/8.386/8.535 (44.7s)
+[FNO] u: 21.939/25.938/28.269  v: 21.930/25.462/27.567  mean: 21.935/25.700/27.918 (45.4s)
+
+===== two-component system summary: component-averaged relL2 (%) =====
+model         16    32(ZS)    64(ZS)    train_s
+FrFNO     8.486%    8.386%    8.535%      44.7
+FNO      21.935%   25.700%   27.918%      45.4
+total 351.2s
