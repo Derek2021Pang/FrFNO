@@ -4,7 +4,7 @@ Reproduction code for **"FrFNO: Injecting the analytic Mittag--Leffler propagato
 into a discretization-convergent neural operator for space--time fractional
 PDEs"** 
 
-Code availability: https://github.com/guofeipang/FrFNO
+Code availability: https://github.com/Derek2021Pang/FrFNO
 
 FrFNO is a *conditional* neural operator for space–time fractional PDEs. The
 exact modal response of the frozen linear part — the one-parameter
