@@ -2,7 +2,7 @@
 
 Reproduction code for **"FrFNO: Injecting the analytic Mittag--Leffler propagator
 into a discretization-convergent neural operator for space--time fractional
-PDEs"** (submitted to Journal of Computational Physics).
+PDEs"** 
 
 Code availability: https://github.com/guofeipang/FrFNO
 
