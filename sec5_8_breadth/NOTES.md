@@ -1,4 +1,4 @@
-# Section 5.9 — Breadth beyond Burgers
+# Section 5.8 — Breadth beyond Burgers
 
 One-knife FrFNO-vs-FNO (and extra baselines where noted) transfers of the same
 "exact frozen propagator + learned residual" construction:

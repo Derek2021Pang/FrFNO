@@ -33,38 +33,35 @@ STEPS = [
         r'b2b_longT.py',                      # FrFNO/PDNO/DeepONet/UNet + b2b_weights.pt
         r'sec5_3_B2_longwindow\b2_frfno_regression.py',
     ]),
-    ('sec5_4', 'B3 space-time fractional (PINO lambda sweep)', [
-        r'sec5_4_B3_spacetime\b3_pino.py',
-    ]),
-    ('sec5_5', 'B4 integer-order limit', [
+    ('sec5_4', 'B4 integer-order limit', [
         r'b4_integer.py',
     ]),
-    ('sec5_6', 'Surrogate speed-up / break-even (needs b1_weights.pt)', [
-        r'sec5_6_speedup\speedup_benchmark.py',
-        r'sec5_6_speedup\plot_speedup.py',
+    ('sec5_5', 'Surrogate speed-up / break-even (needs b1_weights.pt)', [
+        r'sec5_5_speedup\speedup_benchmark.py',
+        r'sec5_5_speedup\plot_speedup.py',
     ]),
-    ('sec5_8', 'Component ablations C1 (B1) and C2 (B2)', [
-        r'sec5_8_ablation\c_ablation.py',
-        r'sec5_8_ablation\b2_ablation.py',
+    ('sec5_7', 'Component ablations C1 (B1) and C2 (B2)', [
+        r'sec5_7_ablation\c_ablation.py',
+        r'sec5_7_ablation\b2_ablation.py',
     ]),
-    ('sec5_7', 'Theory verification Exp.1-2 and theory closure Exp.3-5', [
-        r'sec5_7_theory\theory_verify.py',
-        r'sec5_7_theory\theory_closure\p0_platform.py',
-        r'sec5_7_theory\theory_closure\both_train.py',
-        r'sec5_7_theory\theory_closure\p0_both_eval.py',
-        r'sec5_7_theory\theory_closure\kscan_train.py',
-        r'sec5_7_theory\theory_closure\trscan_train.py',
-        r'sec5_7_theory\theory_closure\p0_trscan.py',
-        r'sec5_7_theory\theory_closure\theory_p15_p14.py',
-        r'sec5_7_theory\theory_closure\probe_spec.py',
+    ('sec5_6', 'Theory verification Exp.1-2 and theory closure Exp.3-5', [
+        r'sec5_6_theory\theory_verify.py',
+        r'sec5_6_theory\theory_closure\p0_platform.py',
+        r'sec5_6_theory\theory_closure\both_train.py',
+        r'sec5_6_theory\theory_closure\p0_both_eval.py',
+        r'sec5_6_theory\theory_closure\kscan_train.py',
+        r'sec5_6_theory\theory_closure\trscan_train.py',
+        r'sec5_6_theory\theory_closure\p0_trscan.py',
+        r'sec5_6_theory\theory_closure\theory_p15_p14.py',
+        r'sec5_6_theory\theory_closure\probe_spec.py',
     ]),
-    ('sec5_9', 'Breadth: Riesz, reaction-diffusion, systems, NS, 3D', [
-        r'sec5_9_breadth\riesz_periodic_check.py',
-        r'sec5_9_breadth\reaction_diffusion_check.py',
-        r'sec5_9_breadth\system_burgers_check.py',
-        r'sec5_9_breadth\system_coupled_check.py',
-        r'sec5_9_breadth\ns_vorticity_check.py',
-        r'sec5_9_breadth\ns3d_vorticity_check.py',
+    ('sec5_8', 'Breadth: Riesz, reaction-diffusion, systems, NS, 3D', [
+        r'sec5_8_breadth\riesz_periodic_check.py',
+        r'sec5_8_breadth\reaction_diffusion_check.py',
+        r'sec5_8_breadth\system_burgers_check.py',
+        r'sec5_8_breadth\system_coupled_check.py',
+        r'sec5_8_breadth\ns_vorticity_check.py',
+        r'sec5_8_breadth\ns3d_vorticity_check.py',
     ]),
     ('appendixA', 'Appendix A: MMS convergence order verification', [
         r'appendixA_code_verification\mms_convergence.py',

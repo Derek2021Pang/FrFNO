@@ -39,18 +39,17 @@ FrFNO/
 ├── b1_burgers.py          # B1 data/ground-truth module (also a runnable driver; writes b1_weights.pt)
 ├── b2b_longT.py           # B2 data module + driver (writes b2b_weights.pt)
 ├── b4_integer.py          # B4 data module + driver (writes b4_weights.pt)
-├── frfno_legacy.py        # legacy module used ONLY by sec5_7/theory_closure (Exp.3-5)
+├── frfno_legacy.py        # legacy module used ONLY by sec5_6/theory_closure (Exp.3-5)
 ├── fractional_pde_study/  # spectral reference solvers (solver*.py)
 ├── CNO2d_simplified/      # vendored CNO block (CNO2d.py)
 │
 ├── sec5_2_B1_main/        # main benchmark B1 (2-D space-time fractional Burgers)
 ├── sec5_3_B2_longwindow/  # long integration window B2 (T=0.06)
-├── sec5_4_B3_spacetime/   # space-time fractional B3 + PINO residual-weight sweep
-├── sec5_5_B4_integer/     # integer-order limit B4 (driver b4_integer.py at root)
-├── sec5_6_speedup/        # per-query cost, break-even, total wall-clock figure
-├── sec5_7_theory/         # theory verification Exp.1-2; theory_closure/ = Exp.3-5
-├── sec5_8_ablation/       # component ablations C1 (B1) and C2 (B2)
-├── sec5_9_breadth/        # Riesz, reaction-diffusion, systems, fractional NS, 3-D
+├── sec5_4_B4_integer/     # integer-order limit B4 (driver b4_integer.py at root)
+├── sec5_5_speedup/        # per-query cost, break-even, total wall-clock figure
+├── sec5_6_theory/         # theory verification Exp.1-2; theory_closure/ = Exp.3-5
+├── sec5_7_ablation/       # component ablations C1 (B1) and C2 (B2)
+├── sec5_8_breadth/        # Riesz, reaction-diffusion, systems, fractional NS, 3-D
 ├── appendixA_code_verification/ # Method-of-Manufactured-Solutions convergence orders
 ├── figures/               # analytic modal-decay schematic
 ├── run_all.py             # ordered end-to-end driver
@@ -64,7 +63,7 @@ bootstrap that puts the package root on `sys.path`; it then writes result files
 to the **package root** (the section folder keeps a reference copy). There are no
 personal absolute paths and the package runs from any location. The
 `theory_closure/` scripts sit two levels below the root and additionally expose
-their own folder and the `sec5_7_theory` folder for intra-package imports.
+their own folder and the `sec5_6_theory` folder for intra-package imports.
 
 ---
 
@@ -120,47 +119,46 @@ numbers in the paper use this table.
 |---|---|---|
 | Table B1 — FrFNO, PDNO, DeepONet, U-Net | `sec5_2_B1_main/rerun_field_dim2.py` | `rerun_field_dim2.log` |
 | Table B1 — FNO, PINO, CNO | `sec5_2_B1_main/rerun_3models.py` (B1 block) | `rerun_3models_result.txt` |
-| Table B2 — FrFNO, PDNO, DeepONet, U-Net | `b2b_longT.py` (root) | `b2b_longT_result.txt` |
+| Table B2 — FrFNO, PDNO, DeepONet, U-Net | `b2b_longT.py` (root) + `sec5_3_B2_longwindow/b2_frfno_regression.py` | `b2_frfno_regression_result.txt` |
 | Table B2 — FNO, PINO, CNO | `sec5_2_B1_main/rerun_3models.py` (B2 block) | `rerun_3models_result.txt` |
-| Table B3 (PINO λ sweep) | `sec5_4_B3_spacetime/b3_pino.py` | `b3_result_lam0.5.txt`, `b3_result_lam0.txt` |
 | Table B4 (integer order) | `b4_integer.py` (root) | `b4_result.txt` |
 | 1-D vs 2-D table regression check | `sec5_2_B1_main/b1_frfno_regression.py`, `sec5_3_B2_longwindow/b2_frfno_regression.py` | `b1/b2_frfno_regression_result.txt` |
 
-### Speed-up (Section 5.6)
+### Speed-up (Section 5.5)
 
 | Paper item | Driver | Output |
 |---|---|---|
-| per-query cost / break-even / total-cost table | `sec5_6_speedup/speedup_benchmark.py` | `speedup_benchmark_result.txt` |
-| total wall-clock vs number of queries figure | `sec5_6_speedup/plot_speedup.py` | `speedup_benchmark.pdf/.png` |
+| per-query cost / break-even / total-cost table | `sec5_5_speedup/speedup_benchmark.py` | `speedup_benchmark_result.txt` |
+| total wall-clock vs number of queries figure | `sec5_5_speedup/plot_speedup.py` | `speedup_benchmark.pdf/.png` |
 
 `speedup_benchmark.py` loads `b1_weights.pt`, which is produced by running
 `b1_burgers.py` (stage `sec5_2` in `run_all.py` does this first).
 
-### Ablations (Section 5.8)
+### Ablations (Section 5.7)
 
 | Paper item | Driver | Output |
 |---|---|---|
-| Table C1 (full / no_base / no_dyn / no_nb, seeds, data, width) | `sec5_8_ablation/c_ablation.py` | `c_ablation_result.txt` |
-| Table C2 (B2 long-window ablation) | `sec5_8_ablation/b2_ablation.py` | `b2_ablation_result.txt` |
+| Table C1 (full / no_base / no_dyn / no_nb, seeds, data, width) | `sec5_7_ablation/c_ablation.py` | `c_ablation_result.txt` |
+| Table C2 (B2 long-window ablation) | `sec5_7_ablation/b2_ablation.py` | `b2_ablation_result.txt` |
 
-### Theory verification (Section 5.7 and Appendix)
+### Theory verification (Section 5.6 and Appendix)
 
 | Paper item | Driver | Output |
 |---|---|---|
-| Exp.1 grid increment, Exp.2 s-scaling FrFNO vs FNO | `sec5_7_theory/theory_verify.py` | `theory_verify_result.txt` |
-| Exp.3/4 slopes (T, η, β, Born ratio) | `sec5_7_theory/theory_closure/theory_p15_p14.py` | `p15_p14_{T,eta,beta,spec,summary}.txt` |
+| Exp.1 grid increment, Exp.2 s-scaling FrFNO vs FNO | `sec5_6_theory/theory_verify.py` | `theory_verify_result.txt` |
+| Exp.3/4 slopes (T, η, β, Born ratio) | `sec5_6_theory/theory_closure/theory_p15_p14.py` | `p15_p14_{T,eta,beta,spec,summary}.txt` |
 | Exp.5 error-floor / two-bandwidth (K-scan, train-resolution scan) | `theory_closure/p0_platform.py`, `both_train.py`, `p0_both_eval.py`, `kscan_train.py`, `trscan_train.py`, `p0_trscan.py` | `p0eval.out`, `p0treval.out`, `exp5_both_summary.md` |
 
-### Breadth (Section 5.9)
+### Breadth (Section 5.8)
 
 | Equation | Driver | Output |
 |---|---|---|
-| Periodic Riesz fractional Laplacian | `sec5_9_breadth/riesz_periodic_check.py` | `riesz_periodic_result.txt` |
-| Linear fractional diffusion / Fisher-KPP / Allen–Cahn | `sec5_9_breadth/reaction_diffusion_check.py` | `reaction_diffusion_result.txt` |
-| 2-D two-component vector Burgers | `sec5_9_breadth/system_burgers_check.py` | `system_burgers_result.txt` |
-| Coupled system with non-symmetric J | `sec5_9_breadth/system_coupled_check.py` | `system_coupled_result.txt` |
-| 2-D fractional NS (vorticity) | `sec5_9_breadth/ns_vorticity_check.py` | `ns_vorticity_result.txt` |
-| 3-D fractional NS (vector vorticity) | `sec5_9_breadth/ns3d_vorticity_check.py` | `ns3d_result.txt` |
+| Periodic Riesz fractional Laplacian | `sec5_8_breadth/riesz_periodic_check.py` | `riesz_periodic_result.txt` |
+| Linear fractional diffusion / Fisher-KPP / Allen–Cahn | `sec5_8_breadth/reaction_diffusion_check.py` | `reaction_diffusion_result.txt` |
+| 2-D two-component vector Burgers | `sec5_8_breadth/system_burgers_check.py` | `system_burgers_result.txt` |
+| Coupled system with non-symmetric J | `sec5_8_breadth/system_coupled_check.py` | `system_coupled_result.txt` |
+| 2-D fractional NS (vorticity) | `sec5_8_breadth/ns_vorticity_check.py` | `ns_vorticity_result.txt` |
+| 3-D fractional NS (vector vorticity) | `sec5_8_breadth/ns3d_vorticity_check.py` | `ns3d_result.txt` |
 
 ### Appendix and figures
 
