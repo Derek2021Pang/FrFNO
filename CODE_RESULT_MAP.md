@@ -9,28 +9,29 @@ use the **one-dimensional** propagator table (`frfno_core.build_prop_table_1d`).
 |---|---|---|---|---|
 | 1 | Table B1 (Sec 5.2) | FrFNO, PDNO, DeepONet, U-Net | `sec5_2_B1_main/rerun_field_dim2.py` | `rerun_field_dim2.log` |
 | 2 | Table B1 (Sec 5.2) | FNO, PINO, CNO | `sec5_2_B1_main/rerun_3models.py` (B1 block) | `rerun_3models_result.txt` |
-| 3 | Table B2 (Sec 5.3) | FrFNO, PDNO, DeepONet, U-Net | `b2b_longT.py` + `sec5_3_B2_longwindow/b2_frfno_regression.py` | `b2_frfno_regression_result.txt` |
+| 3 | Table B2 (Sec 5.3) | FrFNO, PDNO, DeepONet, U-Net | `b2b_longT.py` | `b2b_longT_result.txt` |
 | 4 | Table B2 (Sec 5.3) | FNO, PINO, CNO | `sec5_2_B1_main/rerun_3models.py` (B2 block) | `rerun_3models_result.txt` |
-| 6 | Table B4 (Sec 5.4) | integer-order, all methods | `b4_integer.py` (+ `rerun_3models.py` competitor block) | `b4_result.txt` |
-| 7 | Table per-query cost (Sec 5.5) | direct vs FrFNO timing | `sec5_5_speedup/speedup_benchmark.py` | `speedup_benchmark_result.txt` |
-| 8 | Table break-even / offline (Sec 5.5) | cost analysis | `sec5_5_speedup/speedup_benchmark.py` | `speedup_benchmark_result.txt` |
-| 9 | Fig. total wall-clock (Sec 5.5) | figure | `sec5_5_speedup/plot_speedup.py` | `speedup_benchmark.pdf/.png` |
-| 10 | Table C1 (Sec 5.7) | B1 component ablation | `sec5_7_ablation/c_ablation.py` | `c_ablation_result.txt` |
-| 11 | Table C2 (Sec 5.7) | B2 component ablation | `sec5_7_ablation/b2_ablation.py` | `b2_ablation_result.txt` |
-| 12 | Exp.1–2 (Sec 5.6) | theory verification | `sec5_6_theory/theory_verify.py` | `theory_verify_result.txt` |
-| 13 | Exp.3–4 (Sec 5.6/App.) | slopes T, η, β, Born ratio | `sec5_6_theory/theory_closure/theory_p15_p14.py` | `p15_p14_{T,eta,beta,spec,summary}.txt` |
-| 14 | Exp.5 (Sec 5.6/App.) | error floor / two-bandwidth | `sec5_6_theory/theory_closure/p0_platform.py`, `both_train.py`, `p0_both_eval.py`, `kscan_train.py`, `trscan_train.py`, `p0_trscan.py` | `p0eval.out`, `p0treval.out`, `exp5_both_summary.md` |
-| 15 | Table breadth (Sec 5.8) | periodic Riesz | `sec5_8_breadth/riesz_periodic_check.py` | `riesz_periodic_result.txt` |
-| 16 | Table breadth (Sec 5.8) | diffusion/Fisher/Allen-Cahn | `sec5_8_breadth/reaction_diffusion_check.py` | `reaction_diffusion_result.txt` |
-| 17 | Table breadth (Sec 5.8) | 2-D vector Burgers | `sec5_8_breadth/system_burgers_check.py` | `system_burgers_result.txt` |
-| 18 | Table breadth (Sec 5.8) | coupled system J | `sec5_8_breadth/system_coupled_check.py` | `system_coupled_result.txt` |
-| 19 | Table breadth (Sec 5.8) | 2-D fractional NS | `sec5_8_breadth/ns_vorticity_check.py` | `ns_vorticity_result.txt` |
-| 20 | Table breadth (Sec 5.8) | 3-D fractional NS | `sec5_8_breadth/ns3d_vorticity_check.py` | `ns3d_result.txt` |
+| 5 | Table B3 (Sec 5.4) | FrFNO / FNO / PINO λ-sweep | `sec5_4_B3_spacetime/b3_pino.py` | `b3_result_lam0.txt`, `b3_result_lam0.5.txt` |
+| 6 | Table B4 (Sec 5.5) | integer-order, all methods | `b4_integer.py` (+ `rerun_3models.py` competitor block) | `b4_result.txt` |
+| 7 | Table per-query cost (Sec 5.6) | direct vs FrFNO timing | `sec5_6_speedup/speedup_benchmark.py` | `speedup_benchmark_result.txt` |
+| 8 | Table break-even / offline (Sec 5.6) | cost analysis | `sec5_6_speedup/speedup_benchmark.py` | `speedup_benchmark_result.txt` |
+| 9 | Fig. total wall-clock (Sec 5.6) | figure | `sec5_6_speedup/plot_speedup.py` | `paper/figs/speedup_benchmark.pdf/.png` |
+| 10 | Table C1 (Sec 5.8) | B1 component ablation | `sec5_8_ablation/c_ablation.py` | `c_ablation_result.txt` |
+| 11 | Table C2 (Sec 5.8) | B2 component ablation | `sec5_8_ablation/b2_ablation.py` | `b2_ablation_result.txt` |
+| 12 | Exp.1–2 (Sec 5.7) | theory verification | `sec5_7_theory/theory_verify.py` | `theory_verify_result.txt` |
+| 13 | Exp.3–4 (Sec 5.7/App.) | slopes T, η, β, Born ratio | `sec5_7_theory/theory_closure/theory_p15_p14.py` | `p15_p14_{T,eta,beta,spec,summary}.txt` |
+| 14 | Exp.5 (Sec 5.7/App.) | error floor / two-bandwidth | `theory_closure/p0_platform.py`, `both_train.py`, `p0_both_eval.py`, `kscan_train.py`, `trscan_train.py`, `p0_trscan.py` | `p0eval.out`, `p0treval.out`, `exp5_both_summary.md` |
+| 15 | Table breadth (Sec 5.9) | periodic Riesz | `sec5_9_breadth/riesz_periodic_check.py` | `riesz_periodic_result.txt` |
+| 16 | Table breadth (Sec 5.9) | diffusion/Fisher/Allen-Cahn | `sec5_9_breadth/reaction_diffusion_check.py` | `reaction_diffusion_result.txt` |
+| 17 | Table breadth (Sec 5.9) | 2-D vector Burgers | `sec5_9_breadth/system_burgers_check.py` | `system_burgers_result.txt` |
+| 18 | Table breadth (Sec 5.9) | coupled system J | `sec5_9_breadth/system_coupled_check.py` | `system_coupled_result.txt` |
+| 19 | Table breadth (Sec 5.9) | 2-D fractional NS | `sec5_9_breadth/ns_vorticity_check.py` | `ns_vorticity_result.txt` |
+| 20 | Table breadth (Sec 5.9) | 3-D fractional NS | `sec5_9_breadth/ns3d_vorticity_check.py` | `ns3d_result.txt` |
 | 21 | Appendix MMS table | convergence orders | `appendixA_code_verification/mms_convergence.py` | `mms_result.txt` |
-| 22 | Fig. modal decay | analytic schematic | `figures/make_modal_decay_fig.py` | `figures/modal_decay_vs_T.pdf/.png` |
-| 23 | Fig. B1 snapshot | solution field | `sec5_2_B1_main/plot_structure_b1.py` | `fig_snapshot_structure.png` |
-| 24 | Fig. B1 radial spectrum | spectrum | `sec5_2_B1_main/plot_spectrum_b1.py` | `fig_radial_spectrum.png` |
-| 25 | Fig. 1 architecture | hand-drawn (not generated) | — | not included in code repo |
+| 22 | Fig. modal decay | analytic schematic | `figures/make_modal_decay_fig.py` | `paper/figs/modal_decay_vs_T.pdf/.png` |
+| 23 | Fig. B1 snapshot | solution field | `sec5_2_B1_main/plot_structure_b1.py` | `paper/figs/fig_snapshot_structure.png` |
+| 24 | Fig. B1 radial spectrum | spectrum | `sec5_2_B1_main/plot_spectrum_b1.py` | `paper/figs/fig_radial_spectrum.png` |
+| 25 | Fig. 1 architecture | hand-drawn (not generated) | — | `paper/figs/{FrFNO,FNO}_architecture.pdf` |
 | 26 | Algorithm 1 (offline table) | code | `frfno_core.build_prop_table_1d` | — |
 | 27 | Algorithm 2 (training) | code | `frfno_core.DualNet` + `b1_burgers.train` | — |
 | 28 | Algorithm 3 (inference) | code | `frfno_core.ub_full_batch/prop_at` + `DualNet.forward` | — |

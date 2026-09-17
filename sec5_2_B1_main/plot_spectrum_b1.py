@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import os as _os, sys as _sys
 _PKG_ROOT = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
 if _PKG_ROOT not in _sys.path: _sys.path.insert(0, _PKG_ROOT)
@@ -24,8 +24,8 @@ DA, DSNB = 0.10, 0.08
 
 def build_nets():
     W = torch.load(os.path.join(ROOT, 'b1_weights.pt'), map_location=DEV)
-    nets = {'FrFNO': DualNet(7, seed=1), 'FNO': DualNet(2, field_dim=0, seed=2),
-            'PINO': DualNet(2, field_dim=0, seed=7), 'PDNO': PDNO2d(seed=6),
+    nets = {'FrFNO': DualNet(7, seed=1), 'FNO': DualNet(2, field_dim=2, seed=2),
+            'PINO': DualNet(2, field_dim=2, seed=7), 'PDNO': PDNO2d(seed=6),
             'CNO': CNOWrap(17, ch=32, use_bn=False, seed=3).to(DEV).float()}
     for k in nets: nets[k].load_state_dict(W[k]); nets[k].eval()
     return nets
@@ -111,7 +111,7 @@ def main():
     plt.xlabel('wavenumber |k|'); plt.ylabel('radial power spectrum E(k)')
     plt.title('Nonlinear fractional Burgers: 17$^2$ train $\\rightarrow$ 129$^2$ zero-shot')
     plt.legend(); plt.grid(True, which='both', alpha=.3); plt.tight_layout()
-    out = os.path.join(ROOT, 'paper_JCP', 'figs', 'fig_radial_spectrum.png')
+    out = os.path.join(ROOT, '..', 'paper_JCP', 'figs', 'fig_radial_spectrum.png')
     plt.savefig(out, dpi=200); print('saved', out)
 
 if __name__ == '__main__':

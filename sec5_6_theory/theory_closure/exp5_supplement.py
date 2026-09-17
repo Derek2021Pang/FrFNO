@@ -105,55 +105,59 @@ def stage_eval():
 
 @torch.no_grad()
 def stage_spec():
-    """Exp2: residual spectral tail sigma_K(r) for N0=65^2 FrFNO models."""
+    """Exp2: residual spectral tail sigma_K(r) using DST basis (matches theory), unnormalized.
+
+    Theory (Prop. reg): sigma_K(f)^2 = ||(I-P_K)f||^2, P_K truncates DST modes with |(i,j)|>=K.
+    We verify sigma_K(r)/sigma_K(u) <= C K^{-2s} using the SAME unnormalized DST tail energy.
+    """
+    from gpu_solver import dst2_torch
     zr = nz(REF_NPZ)
     if not zr or zr.get('n_done', 0) < P.NTE: log('ref not ready'); return
     F513, seeds, a, s, xi = zr['F'], zr['seeds'], zr['a'], zr['s'], zr['xi']
     zs = nz(SPEC_NPZ); SPEC = zs['SPEC'].item() if zs and 'SPEC' in zs else {}
 
-    Nx = 64  # compute spectrum at training resolution
+    Nx = 64  # training resolution
     Phi, e = P.get_phi(Nx)
     U0 = np.stack([LG.generate_multiscale_initial(Nx, 8, int(sd)) for sd in seeds]).astype(np.float32)
     NU = P.make_nu(Nx, xi, Phi, e)
+    Fds = P.downsample(F513, Nx)  # (B, (Nx+1)^2)
     PT = build_pt_eig(Nx, 3200, P.AD, P.SDG)
 
-    for K, wname in N64_CONFIGS:
-        wpath = os.path.join(OUT, wname)
-        if not os.path.exists(wpath): log(f'MISSING {wname}, skip'); continue
-        ck = torch.load(wpath, map_location=DEV)
-        MEAN = float(ck.get('MEAN', 0.0060)); SV = float(ck.get('SV', 0.2620))
-        pad = int(ck.get('pad', 4))
-        net = DualNet(7, modes=K, pad=pad, field_dim=1, seed=1).to(DEV).float()
-        net.load_state_dict(ck['FrFNO']); net.eval()
-        SC.MEAN, SC.SV = MEAN, SV
+    # DST mode indices i,j = 1..Nx; radial cutoff K means sqrt(i^2+j^2) >= K
+    ii, jj = np.meshgrid(np.arange(1, Nx+1), np.arange(1, Nx+1), indexing='ij')
+    kr = np.sqrt(ii**2 + jj**2)
 
-        tails = []; totals = []; svals = []
-        for i in range(len(a)):
-            u0t = torch.tensor(U0[i:i+1], device=DEV, dtype=DT)
-            nut = torch.tensor(NU[i:i+1], device=DEV, dtype=DT)
-            aa, ss = float(a[i]), float(s[i])
-            gs = [prop_at(aa, ss, *PT)]+[prop_at(*z, *PT) for z in [(aa-0.10, ss), (aa+0.10, ss), (aa, ss-0.08), (aa, ss+0.08)]]
-            ubs = [ub_full_batch(U0[i:i+1], g, Nx) for g in gs]
-            xb = torch.stack([u0t, ubs[0], nut, ubs[1], ubs[2], ubs[3], ubs[4]], -1)
-            r = (SV * net(xb, (aa, ss))).cpu().numpy()[0]  # residual field (N+1, N+1)
-            # 2D FFT of interior
-            rint = r[1:, 1:]  # (N, N)
-            Fk = np.fft.fft2(rint)
-            power = np.abs(Fk)**2
-            # radial spectral tail: total power in modes with radial wavenumber >= K
-            ny, nx = rint.shape
-            ky, kx = np.meshgrid(np.fft.fftfreq(ny), np.fft.fftfreq(nx), indexing='ij')
-            kr = np.sqrt(kx**2 + ky**2)  # cycles/sample
-            K_cycles = K / ny  # K modes converted to cycles/sample
-            total = power.sum()
-            tail = power[kr >= K_cycles].sum()
-            tails.append(tail); totals.append(total); svals.append(ss)
-        sigma = np.array([t/(tot+1e-30) for t, tot in zip(tails, totals)])
+    Ks = [4, 6, 8, 12]
+    all_sigma_r = {K: [] for K in Ks}
+    all_sigma_u = {K: [] for K in Ks}
+    svals = []
+    for i in range(len(a)):
+        aa, ss = float(a[i]), float(s[i])
+        g = prop_at(aa, ss, *PT)
+        base = ub_full_batch(U0[i:i+1], g, Nx).cpu().numpy()[0]  # (N+1,N+1)
+        u_ref = Fds[i].reshape(Nx+1, Nx+1)
+        r = u_ref - base
+        # DST on interior (Nx, Nx)
+        r_int = torch.tensor(r[1:, 1:], device=DEV, dtype=DT).unsqueeze(0)
+        u_int = torch.tensor(u_ref[1:, 1:], device=DEV, dtype=DT).unsqueeze(0)
+        r_dst = dst2_torch(r_int)[0].cpu().numpy()  # (Nx, Nx), ortho -> Parseval holds
+        u_dst = dst2_torch(u_int)[0].cpu().numpy()
+        pr = r_dst**2; pu = u_dst**2
+        for K in Ks:
+            mask = kr >= K
+            all_sigma_r[K].append(np.sqrt(pr[mask].sum()))
+            all_sigma_u[K].append(np.sqrt(pu[mask].sum()))
+        svals.append(ss)
+
+    for K in Ks:
+        sr = np.array(all_sigma_r[K]); su = np.array(all_sigma_u[K])
         key = f'N64_K{K}'
-        SPEC[key] = {'sigma_mean': float(sigma.mean()), 'sigma_std': float(sigma.std()),
+        SPEC[key] = {'sigma_r_mean': float(sr.mean()), 'sigma_r_std': float(sr.std()),
+                     'sigma_u_mean': float(su.mean()), 'sigma_u_std': float(su.std()),
+                     'ratio_mean': float((sr/su).mean()),
                      's_mean': float(np.mean(svals)), 'radial_K': K}
         np.savez(SPEC_NPZ, SPEC=SPEC)
-        log(f'[spec] K={K}: sigma_K(r)={sigma.mean():.4e} (s_mean={np.mean(svals):.3f})')
+        log(f'[spec] K={K}: sigma_r={sr.mean():.4e} sigma_u={su.mean():.4e} ratio={(sr/su).mean():.4e} (s_mean={np.mean(svals):.3f})')
     log('spec DONE')
 
 def stage_plot():
@@ -186,29 +190,28 @@ def stage_plot():
     plt.savefig(os.path.join(OUT, 'exp5_conv_curve.png'), dpi=150); plt.close()
     log(f'Exp1 plot saved: Ns={Ns_pub}, FrFNO floor={frfno_pub[-1]:.2f}%, FNO floor={fno_pub[-1]:.2f}%')
 
-    # ===== Exp2: spectral tail K^{-2s} slope =====
+    # ===== Exp2: spectral tail ratio sigma_r/sigma_u =====
     zs = nz(SPEC_NPZ)
     if zs and 'SPEC' in zs:
         SPEC = zs['SPEC'].item()
-        Ks = []; sigmas = []
-        for K, _ in N64_CONFIGS:
-            key = f'N64_K{K}'
-            if key in SPEC:
-                Ks.append(K); sigmas.append(SPEC[key]['sigma_mean'])
+        Ks = sorted([K for K in [4,6,8,12] if f'N64_K{K}' in SPEC])
         if len(Ks) >= 3:
-            Ks = np.array(Ks, dtype=float); sigmas = np.array(sigmas)
-            logKs = np.log10(Ks); logsig = np.log10(sigmas)
-            slope, intercept = np.polyfit(logKs, logsig, 1)
+            sr = np.array([SPEC[f'N64_K{K}']['sigma_r_mean'] for K in Ks])
+            su = np.array([SPEC[f'N64_K{K}']['sigma_u_mean'] for K in Ks])
+            ratio = sr / su
+            Ks_arr = np.array(Ks, dtype=float)
+            slope_r, _ = np.polyfit(np.log10(Ks_arr), np.log10(sr), 1)
+            slope_u, _ = np.polyfit(np.log10(Ks_arr), np.log10(su), 1)
+            slope_ratio, _ = np.polyfit(np.log10(Ks_arr), np.log10(ratio), 1)
             fig, ax = plt.subplots(figsize=(6.5, 4.5))
-            ax.loglog(Ks, sigmas, 'o', color='#2E8B57', ms=10, label='measured $\\sigma_K(r)$')
-            Kfit = np.linspace(Ks.min(), Ks.max(), 50)
-            ax.loglog(Kfit, 10**intercept * Kfit**slope, '-', color='#2E8B57', lw=2,
-                      label=f'fit: slope={slope:.2f} (theory: $-2s\\approx-1.15$)')
-            ax.set_xlabel('spectral modes $K$'); ax.set_ylabel('$\\sigma_K(r)=\\|r-P_Kr\\|/\\|r\\|$')
-            ax.set_title('Exp.2: residual spectral tail $\\sigma_K(r)\\sim K^{-2s}$ ($N_0{=}65^2$, FrFNO)')
+            ax.loglog(Ks_arr, sr, 'o-', color='#C0392B', ms=8, lw=2, label=f'$\\sigma_K(r)$ slope={slope_r:.2f}')
+            ax.loglog(Ks_arr, su, 's-', color='#2980B9', ms=8, lw=2, label=f'$\\sigma_K(u)$ slope={slope_u:.2f}')
+            ax.loglog(Ks_arr, ratio, '^-', color='#2E8B57', ms=8, lw=2, label=f'$\\sigma_K(r)/\\sigma_K(u)$ slope={slope_ratio:.2f}')
+            ax.set_xlabel('radial modes $K$'); ax.set_ylabel('normalized spectral tail')
+            ax.set_title('Exp.~5b: residual vs solution spectral tail ($N_0{=}65^2$, true residual)')
             ax.legend(fontsize=9); ax.grid(alpha=.3, which='both'); plt.tight_layout()
             plt.savefig(os.path.join(OUT, 'exp5_spec_tail.png'), dpi=150); plt.close()
-            log(f'Exp2 plot saved: slope={slope:.3f}, Ks={Ks.tolist()}, sigmas={sigmas.tolist()}')
+            log(f'Exp2 plot saved: slope_r={slope_r:.3f} slope_u={slope_u:.3f} slope_ratio={slope_ratio:.3f}')
         else:
             log('Exp2: not enough spec data points')
     else:

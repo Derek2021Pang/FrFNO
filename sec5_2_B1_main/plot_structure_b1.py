@@ -1,11 +1,11 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import os as _os, sys as _sys
 _PKG_ROOT = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
 if _PKG_ROOT not in _sys.path: _sys.path.insert(0, _PKG_ROOT)
 """B3 supplement: mechanistic evidence at the structure/phase level (power spectra discard phase; the L2 advantage should arise from spatial structure and phase).
 Top row: representative 129^2 snapshots (truth + 5 models, shared color scale);
 bottom-left: x-profile along the y-midline (checks front-position alignment); bottom-right: radial phase error vs wavenumber.
-Quantification: mean phase error (k1..32) and normalized cross-correlation (NCC)."""
+Quantification: mean phase error (k1-32) and normalized cross-correlation (NCC)."""
 import os
 ROOT = _PKG_ROOT
 import sys; sys.path.insert(0, ROOT)
@@ -56,6 +56,7 @@ def main():
         print('  %-6s L2=%.3f%%  phase error (k1-32)=%.3f rad  NCC=%.4f'
               % (m, 100*l2[m].mean(), PE[m][1:33].mean(), ncc(P[m], true)))
     colors = {'FrFNO': '#d62728', 'FNO': '#1f77b4', 'PINO': '#2ca02c', 'PDNO': '#9467bd', 'CNO': '#ff7f0e'}
+    linestyles = {'FrFNO': (0, (6, 2)), 'FNO': (0, (4, 1, 1, 1)), 'PINO': (0, (1, 2)), 'PDNO': (0, (8, 3)), 'CNO': (0, (3, 3, 1, 3))}
     fig = plt.figure(figsize=(14, 8.2))
     panels = [('Truth', true)] + [(m, P[m]) for m in Ms]
     vmin, vmax = np.percentile(true[idx], [4, 96])
@@ -64,14 +65,14 @@ def main():
         ax.set_title(nm, fontsize=11); ax.set_xticks([]); ax.set_yticks([])
     axp = fig.add_subplot(2, 2, 3)
     jm = 64; xx = np.linspace(0, 1, 129)
-    axp.plot(xx, true[idx, :, jm], 'k', lw=2.4, label='Truth')
-    for m in Ms: axp.plot(xx, P[m][idx, :, jm], '--', color=colors[m], lw=1.5, label=m)
+    axp.plot(xx, true[idx, :, jm], 'k-', lw=2.4, label='Truth')
+    for m in Ms: axp.plot(xx, P[m][idx, :, jm], linestyle=linestyles[m], color=colors[m], lw=1.6, label=m)
     axp.set_title('x-profile at mid-y'); axp.set_xlabel('x'); axp.legend(fontsize=8); axp.grid(alpha=.3)
     axx = fig.add_subplot(2, 2, 4); kk = np.arange(1, 40)
-    for m in Ms: axx.plot(kk, PE[m][1:40], '--', color=colors[m], lw=1.6, label=m)
+    for m in Ms: axx.plot(kk, PE[m][1:40], linestyle=linestyles[m], color=colors[m], lw=1.6, label=m)
     axx.axvline(8, color='gray', ls=':'); axx.set_title('mean phase error vs |k|')
     axx.set_xlabel('wavenumber |k|'); axx.set_ylabel('|phase diff| (rad)'); axx.legend(fontsize=8); axx.grid(alpha=.3)
-    fig.tight_layout(); out = os.path.join(ROOT, 'b1_structure.png')
+    fig.tight_layout(); out = r'D:\科研\paper_JCP2\figs\fig_snapshot_structure.png'
     plt.savefig(out, dpi=190); print('saved', out)
 
 if __name__ == '__main__':
