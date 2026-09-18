@@ -7,10 +7,10 @@ use the **one-dimensional** propagator table (`frfno_core.build_prop_table_1d`).
 
 | # | Paper location | Kind | Generating script | Output file / artifact |
 |---|---|---|---|---|
-| 1 | Table B1 (Sec 5.2) | FrFNO, PDNO, DeepONet, U-Net | `sec5_2_B1_main/rerun_field_dim2.py` | `rerun_field_dim2.log` |
-| 2 | Table B1 (Sec 5.2) | FNO, PINO, CNO | `sec5_2_B1_main/rerun_3models.py` (B1 block) | `rerun_3models_result.txt` |
-| 3 | Table B2 (Sec 5.3) | FrFNO, PDNO, DeepONet, U-Net | `b2b_longT.py` | `b2b_longT_result.txt` |
-| 4 | Table B2 (Sec 5.3) | FNO, PINO, CNO | `sec5_2_B1_main/rerun_3models.py` (B2 block) | `rerun_3models_result.txt` |
+| 1 | Table B1 (Sec 5.2) | FrFNO | `sec5_2_B1_main/b1_frfno_regression.py` | `b1_frfno_regression_result.txt` (new 1-D column) |
+| 2 | Table B1 (Sec 5.2) | FNO, PINO, CNO, PDNO, DeepONet, U-Net | `sec5_2_B1_main/rerun_3models.py` (B1 block) | `rerun_3models_result.txt` |
+| 3 | Table B2 (Sec 5.3) | FrFNO | `sec5_3_B2_longwindow/b2_frfno_regression.py` | `b2_frfno_regression_result.txt` (new 1-D column) |
+| 4 | Table B2 (Sec 5.3) | FNO, PINO, CNO, PDNO, DeepONet, U-Net | `sec5_2_B1_main/rerun_3models.py` (B2 block) | `rerun_3models_result.txt` |
 | 5 | Table B3 (Sec 5.4) | FrFNO / FNO / PINO λ-sweep | `sec5_4_B3_spacetime/b3_pino.py` | `b3_result_lam0.txt`, `b3_result_lam0.5.txt` |
 | 6 | Table B4 (Sec 5.5) | integer-order, all methods | `b4_integer.py` (+ `rerun_3models.py` competitor block) | `b4_result.txt` |
 | 7 | Table per-query cost (Sec 5.6) | direct vs FrFNO timing | `sec5_6_speedup/speedup_benchmark.py` | `speedup_benchmark_result.txt` |
@@ -36,19 +36,14 @@ use the **one-dimensional** propagator table (`frfno_core.build_prop_table_1d`).
 | 27 | Algorithm 2 (training) | code | `frfno_core.DualNet` + `b1_burgers.train` | — |
 | 28 | Algorithm 3 (inference) | code | `frfno_core.ub_full_batch/prop_at` + `DualNet.forward` | — |
 | 29 | Table model parameter counts | code | `models_surrogate.n_params`, `models_extra` | printed by each benchmark |
-| 30 | 1-D vs 2-D table regression | sanity | `sec5_2_B1_main/b1_frfno_regression.py`, `sec5_3_B2_longwindow/b2_frfno_regression.py` | `b1/b2_frfno_regression_result.txt` |
 
 ## Notes
-* **Multi-script tables.** B1/B2/B4 rows are concatenations: the FrFNO-family
-  columns (FrFNO/PDNO/DeepONet/U-Net) come from one script and the FNO/PINO/CNO
-  columns from `rerun_3models.py`, because the competitor runs use a separate
-  official-training policy. The two halves share the identical data, order grid,
-  reference solver and evaluation tiers.
+* **Multi-script tables.** B1/B2 rows are concatenations: the FrFNO column comes
+  from the regression script (1-D propagator table), and the six competitor
+  columns (FNO/PINO/PDNO/CNO/DeepONet/U-Net) come from `rerun_3models.py`. The two
+  halves share the identical data, order grid, reference solver and evaluation tiers.
 * **Weight dependencies.** `speedup_benchmark.py` and the B1 plotting scripts
   read `b1_weights.pt`, produced by `b1_burgers.py`; `run_all.py` orders stages
   accordingly. `*.pt`/large `*.npz` are regenerated, not committed.
-* **Stale-column caveat.** Inside `b2b_longT_result.txt`, FNO/PINO/CNO columns
-  predate the official rerun; for B2 competitors use the B2 block of
-  `rerun_3models_result.txt`.
 * **Random seeds.** test orders use `RandomState(2024)`; training/initial-field
   seeds are fixed literals inside each script, so runs are deterministic.

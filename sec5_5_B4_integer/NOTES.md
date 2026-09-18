@@ -1,4 +1,4 @@
-# Section 5.4 — B4 integer-order limit
+﻿# Section 5.5 — B4 integer-order limit
 
 The driver is the shared module `b4_integer.py` at the package **root**
 (`python b4_integer.py`, or stage sec5_4 in run_all.py): it evaluates every

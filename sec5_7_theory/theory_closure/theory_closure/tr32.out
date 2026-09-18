@@ -1,0 +1,25 @@
+Nx_tr=32: 非线性训练真值 10368 条 81s
+MEAN=0.0057 SV=0.2486 STEPS=8000
+  [32-FrFNO] step 0 loss 8.09474e-02
+  [32-FrFNO] step 1000 loss 2.22981e-03
+  [32-FrFNO] step 2000 loss 1.62653e-03
+  [32-FrFNO] step 3000 loss 1.01923e-03
+  [32-FrFNO] step 4000 loss 1.70847e-03
+  [32-FrFNO] step 5000 loss 4.34631e-04
+  [32-FrFNO] step 6000 loss 3.36987e-04
+  [32-FrFNO] step 7000 loss 3.06074e-04
+  [32-FrFNO] step 8000 loss 3.96808e-04
+  [32-FrFNO] 训练 586s 参数 1880.7K
+Nx_tr=32 FrFNO 完成并落盘
+  [32-FNO] step 0 loss 8.71235e-01
+  [32-FNO] step 1000 loss 5.23980e-03
+  [32-FNO] step 2000 loss 1.95995e-03
+  [32-FNO] step 3000 loss 3.37571e-03
+  [32-FNO] step 4000 loss 4.85733e-03
+  [32-FNO] step 5000 loss 7.84390e-04
+  [32-FNO] step 6000 loss 1.27595e-03
+  [32-FNO] step 7000 loss 7.88354e-04
+  [32-FNO] step 8000 loss 7.94937e-04
+  [32-FNO] 训练 413s 参数 1879.9K
+Nx_tr=32 FNO 完成并落盘
+trscan DONE

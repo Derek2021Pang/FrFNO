@@ -1,4 +1,4 @@
-# Section 5.5 — Surrogate speed-up and break-even
+﻿# Section 5.6 — Surrogate speed-up and break-even
 
 | Script | Produces |
 |---|---|

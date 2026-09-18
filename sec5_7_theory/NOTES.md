@@ -1,4 +1,4 @@
-# Section 5.6 / Appendix — Theory verification
+﻿# Section 5.7 / Appendix — Theory verification
 
 Top level:
 * `theory_verify.py` — Exp.1 (grid-increment floor) and Exp.2 (s-scaling of

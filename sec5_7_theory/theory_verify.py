@@ -73,7 +73,7 @@ def true_field_batched(Nx,Nt,seeds,a,s,xi,chunk=6):
 def load_pair(wpath, tagA=1, tagF=2):
     W=torch.load(wpath,map_location=DEV)
     a=DualNet(7,seed=tagA).to(DEV).float(); a.load_state_dict(W['FrFNO']); a.eval()
-    f=DualNet(2,field_dim=0,seed=tagF).to(DEV).float(); f.load_state_dict(W['FNO']); f.eval()
+    f=DualNet(2,field_dim=2,seed=tagF).to(DEV).float(); f.load_state_dict(W['FNO']); f.eval()
     return a,f
 
 def err_of(net,kind,Nx,U0,NU,a,s,Ftr,PT):

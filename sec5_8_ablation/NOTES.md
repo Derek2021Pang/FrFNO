@@ -1,4 +1,4 @@
-# Section 5.7 — Component ablations
+﻿# Section 5.8 — Component ablations
 
 | Script | Produces | Paper |
 |---|---|---|
