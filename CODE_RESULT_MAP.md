@@ -41,8 +41,9 @@ root (`ROOT`, matching `OUT_TXT = os.path.join(ROOT, ...)` inside each driver).
 | 25 | Algorithm 2 (training) | code | `frfno_core.DualNet` + `b1_burgers.train` | — | — |
 | 26 | Algorithm 3 (inference) | code | `frfno_core.ub_full_batch/prop_at` + `DualNet.forward` | — | — |
 | 27 | Table model parameter counts | code | `models_surrogate.n_params`, `models_extra` | printed by each benchmark | — |
-| 28 | rollout diagnostic (Sec 5.2) | per-step error decomposition, input-perturbation sensitivity, linear-propagator time-shift (memory-restart) error | `rollout_diagnose.py` (root) | `rollout_diagnose_result.txt` | 2026-10-07 |
-| 29 | semigroup test (Sec 5.2) | pure linear-table check $E(2\tau)u_0$ vs $E(\tau)E(\tau)u_0$ over $\alpha$, incl.\ integer-order limit | `semigroup_test.py` (root) | `semigroup_test_result.txt` | 2026-10-07 |
+| 28 | rollout mechanism diagnostic (supporting; not part of the paper) | per-step error decomposition, input-perturbation sensitivity, linear-propagator time-shift (memory-restart) error | `rollout_diagnose.py` (root) | `rollout_diagnose_result.txt` | 2026-10-07 |
+| 29 | semigroup test (supporting; not part of the paper) | pure linear-table check $E(2\tau)u_0$ vs $E(\tau)E(\tau)u_0$ over $\alpha$, incl.\ integer-order limit | `semigroup_test.py` (root) | `semigroup_test_result.txt` | 2026-10-07 |
+| 30 | table-shift test (supporting; not part of the paper) | two big steps 0→0.015→0.03 on one 400-step table; first- vs second-half kernel; integer-order limit exact | `table_shift_test.py` (root) | `table_shift_test_result.txt` | 2026-10-07 |
 
 ## Notes
 

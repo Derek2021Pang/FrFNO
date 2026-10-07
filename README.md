@@ -116,9 +116,9 @@ Run status (last rerun date) is tracked in `RUNLOG_20261006.md`.
 | Experiment | Driver script(s) | Output file | Rerun |
 |---|---|---|---|
 | Main benchmark B1, all 7 models | `b1_burgers.py` (root) | `b1_burgers_result.txt` | 2026-10-06 |
-| 4-step autoregressive rollout to T=0.06 (supporting diagnostic for the rollout discussion in Sec. 5.2; not a numbered table in the paper) | `rollout_autoreg.py` (root) | `rollout_autoreg_result.txt` | 2026-10-07 |
-| rollout mechanism diagnostic (per-step errors, sensitivity, memory-restart error of the Caputo propagator; Sec. 5.2) | `rollout_diagnose.py` (root) | `rollout_diagnose_result.txt` | 2026-10-07 |
-| semigroup test (linear-table $E(2\tau)$ vs $E(\tau)E(\tau)$, Sec. 5.2) | `semigroup_test.py` (root) | `semigroup_test_result.txt` | 2026-10-07 |
+| rollout mechanism diagnostic (supporting diagnostics for the one-shot design; not part of the paper) | `rollout_diagnose.py` (root) | `rollout_diagnose_result.txt` | 2026-10-07 |
+| semigroup test (supporting diagnostics; linear-table $E(2\tau)$ vs $E(\tau)E(\tau)$; not part of the paper) | `semigroup_test.py` (root) | `semigroup_test_result.txt` | 2026-10-07 |
+| table-shift test (supporting diagnostics; two-step 400-step table, first- vs second-half kernel; not part of the paper) | `table_shift_test.py` (root) | `table_shift_test_result.txt` | 2026-10-07 |
 | Long-window B2, all 7 models | `b2b_longT.py` (root) | `b2b_longT_result.txt` | 2026-10-06 |
 | Integer-order B4, all 7 models | `b4_integer.py` (root) | `b4_result.txt` | 2026-10-06 |
 | Space-time variant (PINO λ sweep) | `sec5_4_B3_spacetime/b3_pino.py` | `b3_result_lam0.txt`, `b3_result_lam0.5.txt` | 2026-10-07 |

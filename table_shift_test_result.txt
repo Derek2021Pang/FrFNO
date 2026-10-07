@@ -1,0 +1,12 @@
+# Table-shift test: two big steps 0->0.015->0.03 on a single 400-step table.
+# err = ||u_plan - u_ref|| / ||u_ref|| over the z-grid (z = lambda^s).
+# Plan A queries the SECOND-200 sub-step kernel G2 = E(0.03^a)/E(0.015^a).
+# Plan B replays the FIRST-200 sub-step kernel G1 = E(0.015^a) on u(0.015),
+#      which is exactly what the current rollout code does.
+alpha    PlanA(2nd200) PlanB(1st200)
+0.35          0.0000%     11.2331%
+0.55          0.0000%      8.1371%
+0.75          0.0000%      4.7768%
+0.95          0.0000%      1.0382%
+1.00          0.0000%      0.0001%
+DONE

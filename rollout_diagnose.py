@@ -15,8 +15,8 @@ and the same 48-sample held-out stream (RandomState(2024)).
 (C) Error spectrum: radial power spectrum of the step-1 error vs the step-4
     error at 17^2 (low-frequency accumulation check).
 
-This is a supporting diagnostic for the rollout discussion in Sec. 5.2
-(not a numbered table in the paper). Run time on a desktop GPU: a few minutes.
+This is a supporting diagnostic for the one-shot propagator design
+(not part of the paper). Run time on a desktop GPU: a few minutes.
 """
 import os, sys, time
 ROOT = os.path.dirname(os.path.abspath(__file__))

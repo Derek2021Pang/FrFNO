@@ -26,7 +26,6 @@ PY = sys.executable
 STEPS = [
     ('sec5_2', 'B1 main benchmark: FrFNO/PDNO/DeepONet/UNet + FNO/PINO/CNO', [
         r'b1_burgers.py',                      # also writes b1_weights.pt for sec5_6
-        r'rollout_autoreg.py',                 # 4-step autoregressive rollout of the T=0.015 models to T=0.06
         r'sec5_2_B1_main\plot_band_filling.py',
         r'sec5_2_B1_main\plot_structure_b1.py',
         r'sec5_2_B1_main\plot_spectrum_b1.py',
