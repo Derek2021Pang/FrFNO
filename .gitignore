@@ -3,7 +3,9 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Large binaries are tracked via Git LFS (see .gitattributes); nothing is excluded.
+# All .npz arrays are bundled into data_arrays.zip (tracked via Git LFS).
+# Loose .npz files stay locally for run_all.py but are not uploaded one by one.
+*.npz
 
 # LaTeX build intermediates (PDF kept for convenience)
 paper/*.aux
