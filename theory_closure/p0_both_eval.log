@@ -1,0 +1,69 @@
+  loaded K10_N16 (baseline): K=10, Nx_tr=16, pad=4, MEAN=0.0052, SV=0.2338
+  loaded K16_N16 (K only): K=16, Nx_tr=16, pad=15, MEAN=0.0052, SV=0.2338
+  loaded K24_N16 (K only): K=24, Nx_tr=16, pad=31, MEAN=0.0052, SV=0.2338
+  loaded K10_N32 (grid only): K=10, Nx_tr=32, pad=4, MEAN=0.0058, SV=0.2563
+  loaded K10_N64 (grid only): K=10, Nx_tr=64, pad=4, MEAN=0.0062, SV=0.2700
+  loaded K16_N32 (BOTH): K=16, Nx_tr=32, pad=15, MEAN=0.0058, SV=0.2563
+  loaded K24_N64 (BOTH): K=24, Nx_tr=64, pad=31, MEAN=0.0062, SV=0.2700
+eval DONE
+
+==========================================================================================
+Exp5 SUPPLEMENTARY: K AND TRAINING GRID ENLARGED TOGETHER
+(single frozen 513^2 truth, 48 samples, bootstrap 95% CI)
+==========================================================================================
+
+--- FrFNO ---
+configuration                N=   17 N=   65 N=  129 N=  257
+K10_N16 (baseline)            16.750  10.211   9.970   9.967
+K16_N16 (K only)              16.739  12.122  12.909  13.472
+K24_N16 (K only)              16.350  13.255  15.253  16.456
+K10_N32 (grid only)           15.243   7.303   6.939   6.951
+K10_N64 (grid only)           14.814   5.248   4.756   4.903
+K16_N32 (BOTH) *              16.119   7.724   8.070   8.605
+K24_N64 (BOTH) *              17.822   5.168   5.598   6.620
+
+--- FNO ---
+configuration                N=   17 N=   65 N=  129 N=  257
+K10_N16 (baseline)            11.928  18.010  19.499  20.331
+K16_N16 (K only)              11.735  38.342  43.405  46.026
+K24_N16 (K only)              12.860  36.186  44.672  49.335
+K10_N32 (grid only)           12.859  10.234  13.137  15.119
+K10_N64 (grid only)           15.741   5.374   7.263   9.264
+K16_N32 (BOTH) *              20.150  20.283  26.249  28.894
+K24_N64 (BOTH) *              34.546   5.133  16.173  19.054
+
+==========================================================================================
+KEY COMPARISON at N=257 (plateau region):
+==========================================================================================
+
+FrFNO:
+  K10_N16 (baseline)           9.967%
+  K16_N16 (K only)             13.472%
+  K24_N16 (K only)             16.456%
+  K10_N32 (grid only)          6.951%
+  K10_N64 (grid only)          4.903%
+  K16_N32 (BOTH)               8.605%
+  K24_N64 (BOTH)               6.620%
+
+  K=16 axis: K-only=13.47%, grid-only=6.95%, BOTH=8.60%
+  BOTH vs grid-only: +1.65% (NOT lower)
+
+  K=24 axis: K-only=16.46%, grid-only=4.90%, BOTH=6.62%
+  BOTH vs grid-only: +1.72% (NOT lower)
+
+FNO:
+  K10_N16 (baseline)           20.331%
+  K16_N16 (K only)             46.026%
+  K24_N16 (K only)             49.335%
+  K10_N32 (grid only)          15.119%
+  K10_N64 (grid only)          9.264%
+  K16_N32 (BOTH)               28.894%
+  K24_N64 (BOTH)               19.054%
+
+  K=16 axis: K-only=46.03%, grid-only=15.12%, BOTH=28.89%
+  BOTH vs grid-only: +13.78% (NOT lower)
+
+  K=24 axis: K-only=49.34%, grid-only=9.26%, BOTH=19.05%
+  BOTH vs grid-only: +9.79% (NOT lower)
+
+summary DONE

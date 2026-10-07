@@ -1,0 +1,17 @@
+Periodic Riesz fractional-Laplacian check (FFT symbol |k|^{2s}), beta=3 T=0.015
+train n=16 NTR=64 steps=3000 order grid 3x3; test NTE=24; res=[(16, 400), (32, 800), (64, 1600)]
+train reference built: SOL shape (3, 3, 64, 16, 16)
+[FrFNO] trained in 52.5s
+  [FrFNO] n=16  relL2 = 3.071%
+  [FrFNO] n=32  relL2 = 3.604%
+  [FrFNO] n=64  relL2 = 3.594%
+[FNO] trained in 52.0s
+  [FNO] n=16  relL2 = 7.623%
+  [FNO] n=32  relL2 = 7.319%
+  [FNO] n=64  relL2 = 6.399%
+
+===== periodic Riesz summary: relL2 (%) =====
+model     16(train)     32(ZS)     64(ZS)      train_s
+FrFNO        3.071%     3.604%     3.594%        52.5
+FNO          7.623%     7.319%     6.399%        52.0
+total 327.1s

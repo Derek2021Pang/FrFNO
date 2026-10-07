@@ -1,0 +1,17 @@
+
+########## Exp1 error floor (fixed K=10, B1 weights, matched dt refinement) ##########
+  N= 17^2  FrFNO= 1.740%  FNO= 2.840%  ratio= 1.63  (table 7s/ground-truth 3s/eval 1s)
+  N= 65^2  FrFNO= 7.824%  FNO=22.939%  ratio= 2.93  (table 1s/ground-truth 4s/eval 1s)
+  N=129^2  FrFNO= 9.464%  FNO=26.853%  ratio= 2.84  (table 3s/ground-truth 9s/eval 1s)
+  N=257^2  FrFNO=10.377%  FNO=28.819%  ratio= 2.78  (table 10s/ground-truth 193s/eval 1s)
+
+########## Exp2 s-scan (B4 weights, alpha=.85, 129^2, advantage ~K^{2s}) ##########
+  s=0.40  FrFNO=14.026%  FNO=18.229%  ratio R= 1.30  K^{2s}= 6.31
+  s=0.50  FrFNO=10.507%  FNO=17.327%  ratio R= 1.65  K^{2s}=10.00
+  s=0.60  FrFNO= 7.366%  FNO=20.556%  ratio R= 2.79  K^{2s}=15.85
+  s=0.70  FrFNO= 5.392%  FNO=27.415%  ratio R= 5.08  K^{2s}=25.12
+  s=0.80  FrFNO= 4.801%  FNO=36.127%  ratio R= 7.52  K^{2s}=39.81
+  s=0.90  FrFNO= 5.486%  FNO=45.690%  ratio R= 8.33  K^{2s}=63.10
+  s=1.00  FrFNO= 7.196%  FNO=56.386%  ratio R= 7.84  K^{2s}=100.00
+
+Done. Theoretical predictions: in Exp1 the error approaches a constant floor as N grows (neither diverges nor vanishes); in Exp2 logR is approximately linear in s with slope ~ln100=4.605.

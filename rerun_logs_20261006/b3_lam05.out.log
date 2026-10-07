@@ -1,0 +1,26 @@
+space-time training ground-truth snapshots, 5 levels x 10368 samples, 6s
+MEAN=0.0052 SV=0.2338 (terminal statistics)
+  restore FrFNO from checkpoint, skip training (restored)
+  restore FNO from checkpoint, skip training (restored)
+  [PINO  ] train 629s params 1880.1K (space-timeCaputocollocation)
+
+== terminal 17^2(train) ==
+  FrFNO  3.892%
+  FNO    3.318%
+  PINO   20.009%
+
+== terminal 65^2(zero-shot) ==
+  FrFNO  7.746%
+  FNO    18.916%
+  PINO   25.456%
+
+== terminal 129^2(zero-shot) ==
+  FrFNO  9.072%
+  FNO    21.252%
+  PINO   31.767%
+
+===== space-time terminal relL2(%) =====
+resolution       FrFNO       FNO      PINO
+17^2        3.892%    3.318%   20.009%
+65^2        7.746%   18.916%   25.456%
+129^2       9.072%   21.252%   31.767%

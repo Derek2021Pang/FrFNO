@@ -1,0 +1,5 @@
+slice(i=4,j=4) a=0.7500 s=0.5650 sample k=0 seed=1000+0
+recompute 2.8s; max|diff|=4.991889e-07  relL2=5.831578e-07
+U0 recon match: 0.00e+00
+max|stored|=0.5501  mean|stored|=0.1675
+verdict: 一致（Γ 修复后生成）

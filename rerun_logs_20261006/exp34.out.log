@@ -1,0 +1,36 @@
+[eta] eta=0.020  e_prop=2.6279e-03  (70.8s)
+[eta] eta=0.050  e_prop=6.5876e-03  (70.3s)
+[eta] eta=0.100  e_prop=1.3242e-02  (71.1s)
+[eta] eta=0.200  e_prop=2.6797e-02  (71.7s)
+[eta] eta=0.400  e_prop=5.5264e-02  (68.4s)
+[eta] loglog fitted slope = 1.016  (Proposition 1 expected ~1.00)  R2=0.9999
+[T]   T=0.0001 Nt=16 e_prop=5.2217e-04 (0.5s)
+[T]   T=0.0002 Nt=32 e_prop=9.3995e-04 (1.0s)
+[T]   T=0.0005 Nt=80 e_prop=2.0143e-03 (2.5s)
+[T]   T=0.0010 Nt=160 e_prop=3.5256e-03 (4.9s)
+[T]   T=0.0020 Nt=320 e_prop=6.0203e-03 (9.8s)
+[T]   T=0.0040 Nt=640 e_prop=9.8672e-03 (19.5s)
+[T]   T=0.0080 Nt=1280 e_prop=1.5164e-02 (38.2s)
+[T]   small-T window (T<=0.001): loglog slope=0.830 (expected ~0.85) R2=0.9999; e~T^a linear R2=0.9992
+[T]   full range (incl. ML saturation): loglog slope=0.776; e/T^a decreases monotonically from the small-T value 1.312 to 0.919 (bounded above)
+[beta] beta=0.50 e_nl=3.0289e-02 (35.8s)
+[beta] beta=1.00 e_nl=5.9867e-02 (35.8s)
+[beta] beta=2.00 e_nl=1.1616e-01 (35.6s)
+[beta] beta=3.00 e_nl=1.6789e-01 (36.4s)
+[beta] beta=5.00 e_nl=2.5660e-01 (37.3s)
+[beta] e-vs-beta linear R2=0.9905; loglog slope=0.933 (Proposition 1 nonlinear term expected ~1)
+[spec] s=0.40 done (104.9s) explain(eta)=[0.0094, 0.0186, 0.0369, 0.0738]
+[spec] s=0.60 done (105.8s) explain(eta)=[0.014, 0.0278, 0.0554, 0.1124]
+[spec] s=0.80 done (115.7s) explain(eta)=[0.0186, 0.037, 0.0738, 0.1501]
+
+[spec]  s  explain-err@.2  explain~eta slope  linear R2  Pr/Pr1 median  log10std (should ~0)
+[spec] 0.40    0.0369        0.1847       1.0000    0.996      0.002
+[spec] 0.60    0.0554        0.2801       0.9999    1.032      0.008
+[spec] 0.80    0.0738        0.3739       0.9999    1.019      0.012
+
+==== P1-5/P1-4 summary ====
+eta: (np.float64(1.015530069788816), np.float64(0.9999352005578795))
+T: (np.float64(0.8297438635334199), np.float64(0.9992161939605766))
+beta: (np.float64(0.9327905770249318), np.float64(0.9904589068080488))
+spec: [(0.4, np.float64(0.03693591617047787), np.float64(0.18471083293358484), np.float64(0.9999841284197944), 0.9961339761608059, 0.002044364943207564), (0.6, np.float64(0.05543949299802383), np.float64(0.28012928065350823), np.float64(0.9999084290599304), 1.031686886043007, 0.008132402027394396), (0.8, np.float64(0.0738293311248223), np.float64(0.3739225714120502), np.float64(0.9998652265306862), 1.0190560051913584, 0.011729470688751785)]
+ALL DONE

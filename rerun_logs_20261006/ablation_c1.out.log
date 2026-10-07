@@ -1,0 +1,10 @@
+building training ground truth...
+nonlineartraining ground truth 10368  samples 25s (beta=3,T=0.015)
+MEAN=0.0052 SV=0.2338, building test ground truth (shared across three tiers, 24 samples)...
+prop table saved to prop_table_1d_na41_ns41_Nt800_M1600_T0.0150.npz
+prop table saved to prop_table_1d_na41_ns41_Nt1600_M1600_T0.0150.npz
+  test ground truth N=17^2 done
+  test ground truth N=65^2 done
+  test ground truth N=129^2 done
+single-sample ground-truth wall time: 17^2=2.173s 129^2=8.764s ratio 4.0x
+19 configurations total, 0 already done

@@ -1,0 +1,15 @@
+# FrFNO reproduction package — Python dependencies
+# Tested on Windows 10/11, Python 3.10, single NVIDIA RTX 3090 (24 GB), CUDA 12.4, float32.
+#
+# Install a CUDA-enabled PyTorch build matching YOUR driver first, e.g. for CUDA 12.4:
+#   pip install torch==2.4.1 --index-url https://download.pytorch.org/whl/cu124
+# then:
+#   pip install -r requirements.txt
+
+numpy==1.26.4
+scipy==1.13.1
+matplotlib==3.9.2
+
+# PyTorch is intentionally NOT pinned here because the correct wheel depends on
+# the local CUDA toolkit; install it separately as shown above. torch==2.4.1 was
+# used to produce every number in the paper.

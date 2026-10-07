@@ -1,0 +1,4 @@
+sample0: a=0.8461 s=0.6667 seed=7816
+recompute 42.8s; max|diff|=0.000000e+00  relL2=0.000000e+00
+max|stored|=0.8233  mean|stored|=0.2210
+verdict: 一致（Γ 修复后生成）

@@ -1,0 +1,8 @@
+[spec] s=0.40 done (104.9s) explain(eta)=[0.0094, 0.0186, 0.0369, 0.0738]
+[spec] s=0.60 done (105.8s) explain(eta)=[0.014, 0.0278, 0.0554, 0.1124]
+[spec] s=0.80 done (115.7s) explain(eta)=[0.0186, 0.037, 0.0738, 0.1501]
+
+[spec]  s  explain-err@.2  explain~eta slope  linear R2  Pr/Pr1 median  log10std (should ~0)
+[spec] 0.40    0.0369        0.1847       1.0000    0.996      0.002
+[spec] 0.60    0.0554        0.2801       0.9999    1.032      0.008
+[spec] 0.80    0.0738        0.3739       0.9999    1.019      0.012

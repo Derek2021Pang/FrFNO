@@ -1,0 +1,9 @@
+[T]   T=0.0001 Nt=16 e_prop=5.2217e-04 (0.5s)
+[T]   T=0.0002 Nt=32 e_prop=9.3995e-04 (1.0s)
+[T]   T=0.0005 Nt=80 e_prop=2.0143e-03 (2.5s)
+[T]   T=0.0010 Nt=160 e_prop=3.5256e-03 (4.9s)
+[T]   T=0.0020 Nt=320 e_prop=6.0203e-03 (9.8s)
+[T]   T=0.0040 Nt=640 e_prop=9.8672e-03 (19.5s)
+[T]   T=0.0080 Nt=1280 e_prop=1.5164e-02 (38.2s)
+[T]   small-T window (T<=0.001): loglog slope=0.830 (expected ~0.85) R2=0.9999; e~T^a linear R2=0.9992
+[T]   full range (incl. ML saturation): loglog slope=0.776; e/T^a decreases monotonically from the small-T value 1.312 to 0.919 (bounded above)

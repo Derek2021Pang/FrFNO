@@ -1,0 +1,38 @@
+nonlineartraining ground truth 10368  samples 24s (beta=3,T=0.015)
+B1 nonlinearBurgers NTR=128 STEPS=8000 Ntest=48; MEAN=0.0052 SV=0.2338
+  [PINO   ] train 346s  params 1880.2K
+
+===== resolution 17^2 (same resolution) =====
+  FrFNO    relative L2 mean  1.687%
+  FNO      relative L2 mean  2.608%
+  PINO     relative L2 mean  2.803%
+  PDNO     relative L2 mean  2.267%
+  CNO      relative L2 mean  2.812%
+  DeepONet relative L2 mean 41.228%
+  UNet     relative L2 mean  4.316%
+
+===== resolution 65^2 (zero-shotsuper-resolution) =====
+  FrFNO    relative L2 mean  7.498%
+  FNO      relative L2 mean 21.458%
+  PINO     relative L2 mean 15.631%
+  PDNO     relative L2 mean  9.946%
+  CNO      relative L2 mean 14.851%
+  DeepONet relative L2 mean 41.684%
+  UNet     relative L2 mean 67.530%
+
+===== resolution 129^2 (zero-shotsuper-resolution) =====
+  FrFNO    relative L2 mean  9.064%
+  FNO      relative L2 mean 24.598%
+  PINO     relative L2 mean 17.895%
+  PDNO     relative L2 mean 15.019%
+  CNO      relative L2 mean 17.065%
+  DeepONet relative L2 mean 42.086%
+  UNet     relative L2 mean 82.235%
+
+========= B1 summary: relative L2 mean error (%) =========
+resolution         FrFNO       FNO      PINO      PDNO       CNO  DeepONet      UNet
+17^2(train)    1.687%    2.608%    2.803%    2.267%    2.812%   41.228%    4.316%
+65^2(zero-shot)    7.498%   21.458%   15.631%    9.946%   14.851%   41.684%   67.530%
+129^2(zero-shot)    9.064%   24.598%   17.895%   15.019%   17.065%   42.086%   82.235%
+training time      242.9s    160.1s    346.5s    184.2s    191.2s     57.7s     70.7s
+parameter count/K     1880.8   1880.2   1880.2    380.3   2012.3   2072.7   1827.9

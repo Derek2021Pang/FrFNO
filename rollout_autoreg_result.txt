@@ -1,0 +1,36 @@
+rebuilding B1 training ground truth for MEAN/SV (one-time, ~minutes)...
+MEAN=0.0052 SV=0.2338
+loaded b1_weights.pt (7 models)
+
+===== rollout to T=0.06 at resolution 17^2 (Nt=1600 truth) =====
+  FrFNO    4-step rollout rel L2 mean  50.081%
+  FNO      4-step rollout rel L2 mean  38.440%
+  PINO     4-step rollout rel L2 mean  38.502%
+  PDNO     4-step rollout rel L2 mean  44.094%
+  CNO      4-step rollout rel L2 mean  44.175%
+  DeepONet 4-step rollout rel L2 mean  62.462%
+  UNet     4-step rollout rel L2 mean  43.835%
+
+===== rollout to T=0.06 at resolution 65^2 (Nt=3200 truth) =====
+  FrFNO    4-step rollout rel L2 mean  49.170%
+  FNO      4-step rollout rel L2 mean  63.232%
+  PINO     4-step rollout rel L2 mean  41.155%
+  PDNO     4-step rollout rel L2 mean  45.552%
+  CNO      4-step rollout rel L2 mean  49.364%
+  DeepONet 4-step rollout rel L2 mean  61.826%
+  UNet     4-step rollout rel L2 mean  79.671%
+
+===== rollout to T=0.06 at resolution 129^2 (Nt=6400 truth) =====
+  FrFNO    4-step rollout rel L2 mean  49.325%
+  FNO      4-step rollout rel L2 mean  66.596%
+  PINO     4-step rollout rel L2 mean  45.472%
+  PDNO     4-step rollout rel L2 mean  60.708%
+  CNO      4-step rollout rel L2 mean  50.390%
+  DeepONet 4-step rollout rel L2 mean  62.033%
+  UNet     4-step rollout rel L2 mean 117.095%
+
+========= rollout summary: mean rel L2 error (%) at T=0.06 =========
+17^2     50.081%   38.440%   38.502%   44.094%   44.175%   62.462%   43.835%
+65^2     49.170%   63.232%   41.155%   45.552%   49.364%   61.826%   79.671%
+129^2    49.325%   66.596%   45.472%   60.708%   50.390%   62.033%  117.095%
+done.

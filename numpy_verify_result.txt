@@ -1,0 +1,7 @@
+Cross-validation: independent NumPy (float64) vs GPU IMEX (float64)
+Equation: ^CD_t^a u + beta u d_x u = -nu(x,y)(-Delta)^s u, Dirichlet
+Nx=16 Nt=400 alpha=0.75 s=0.75 beta=3.0 T=0.015:  max|d| = 5.218048e-15   rel = 6.882904e-15   (np 0.15s, gpu 2.83s)
+Nx=16 Nt=400 alpha=0.60 s=0.85 beta=0.0 T=0.015:  max|d| = 8.326673e-16   rel = 1.776546e-15   (np 0.15s, gpu 2.03s)
+Nx=32 Nt=800 alpha=0.85 s=0.60 beta=3.0 T=0.020:  max|d| = 1.202372e-13   rel = 1.269981e-13   (np 0.58s, gpu 4.10s)
+Nx=32 Nt=800 alpha=1.00 s=1.00 beta=3.0 T=0.015:  max|d| = 2.593481e-13   rel = 2.911420e-13   (np 0.58s, gpu 4.08s)
+worst max|diff| = 2.593481e-13 (float64 machine precision ~2.2e-16 x #ops)

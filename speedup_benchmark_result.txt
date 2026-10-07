@@ -1,0 +1,65 @@
+Device: cuda NVIDIA GeForce RTX 3090 | FrFNO params 1880.8K | trained b1 weights loaded
+
+================ (A) Direct solver wall-clock (GPU, ms) ================
+Resolution  Nt    linear B=1  nonlinear B=1  linear B=64/field  nonlinear B=64/field
+   17^2      400     606.42       2045.81          10.790            34.605
+   33^2      800    1334.33       4272.84          21.456            66.079
+   65^2     1600    2502.37       8464.04          45.572           132.963
+  129^2     3200    4948.97      16048.81         717.825          2086.717
+
+================ (B) FrFNO online inference (GPU, ms) ================
+Resolution  PT build (offline, s)  B=1 online  B=64/field  speedup vs nonlinear B=1
+   17^2              0.2              12.446     12.7583      164.4x
+   65^2             26.2              14.439     13.3806      586.2x
+  129^2             53.2              34.852     14.0030      460.5x
+
+================ (C) Offline one-time cost & break-even ================
+Training-data generation (10368 fields): 22.0 s
+FrFNO training (8000 steps at 17^2):     259.6 s
+Propagator-table build (all resolutions, cached after first run): 79.7 s
+Total offline cost: 281.6 s
+
+Resolution  nonlinear B=1 (ms)  FrFNO B=1 (ms)  net saving/query (ms)  break-even N*
+   17^2             2045.81          12.446             2033.361        138 queries
+   65^2             8464.04          14.439             8449.596         33 queries
+  129^2            16048.81          34.852            16013.955         18 queries
+
+================ (D) Total wall-clock vs number of queries (B=1 path) ================
+
+--- 17^2 : nonlinear solver 2.046 s/query, FrFNO 0.0124 s/query, offline 281.6 s ---
+  Queries   solver total (s)   FrFNO total (s)   speedup
+       1              2.05            281.61        0.0x
+      10             20.46            281.72        0.1x
+      50            102.29            282.22        0.4x
+     100            204.58            282.84        0.7x
+     500           1022.90            287.82        3.6x
+    1000           2045.81            294.05        7.0x
+    5000          10229.04            343.83       29.8x
+
+--- 65^2 : nonlinear solver 8.464 s/query, FrFNO 0.0144 s/query, offline 281.6 s ---
+  Queries   solver total (s)   FrFNO total (s)   speedup
+       1              8.46            281.61        0.0x
+      10             84.64            281.74        0.3x
+      50            423.20            282.32        1.5x
+     100            846.40            283.04        3.0x
+     500           4232.02            288.82       14.7x
+    1000           8464.04            296.04       28.6x
+    5000          42320.18            353.79      119.6x
+
+--- 129^2 : nonlinear solver 16.049 s/query, FrFNO 0.0349 s/query, offline 281.6 s ---
+  Queries   solver total (s)   FrFNO total (s)   speedup
+       1             16.05            281.63        0.1x
+      10            160.49            281.95        0.6x
+      50            802.44            283.34        2.8x
+     100           1604.88            285.09        5.6x
+     500           8024.40            299.03       26.8x
+    1000          16048.81            316.45       50.7x
+    5000          80244.03            455.86      176.0x
+
+================ SUMMARY ================
+Per-query speedup (nonlinear solver B=1 / FrFNO B=1):
+  17^2: 164.4x
+  65^2: 586.2x
+  129^2: 460.5x
+Break-even queries: 17^2 ~ 138, 65^2 ~ 33, 129^2 ~ 17
+Done.

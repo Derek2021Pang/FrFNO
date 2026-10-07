@@ -1,0 +1,6 @@
+representative sample idx=42 (a=0.821 s=0.703); per-sample averages:
+  FrFNO  L2=9.062%  phase error (k1-32)=0.861 rad  NCC=0.9951
+  FNO    L2=24.595%  phase error (k1-32)=1.168 rad  NCC=0.9817
+  PINO   L2=17.903%  phase error (k1-32)=1.254 rad  NCC=0.9866
+  PDNO   L2=15.016%  phase error (k1-32)=1.104 rad  NCC=0.9852
+  CNO    L2=17.059%  phase error (k1-32)=1.315 rad  NCC=0.9833

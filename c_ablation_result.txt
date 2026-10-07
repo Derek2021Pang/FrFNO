@@ -1,0 +1,28 @@
+building training ground truth...
+MEAN=0.0052 SV=0.2338, building test ground truth (shared across three tiers, 24 samples)...
+  test ground truth N=17^2 done
+  test ground truth N=65^2 done
+  test ground truth N=129^2 done
+single-sample ground-truth wall time: 17^2=2.171s 129^2=8.829s ratio 4.1x
+19 configurations total, 0 already done
+  C1_full      params 1880.8K train 93s  17/65/129 = 2.482 / 7.883 / 9.876
+  C1_no_ub     params 1880.2K train 63s  17/65/129 = 4.102 / 16.885 / 21.267
+  C1_no_dyn    params 1880.6K train 85s  17/65/129 = 2.558 / 8.121 / 10.379
+  C1_no_nb     params 1880.3K train 87s  17/65/129 = 2.511 / 7.159 / 9.431
+  C1_direct    params 1880.8K train 87s  17/65/129 = 3.979 / 8.583 / 10.780
+  C2_Fr_s11    params 1880.8K train 88s  17/65/129 = 2.587 / 7.687 / 9.783
+  C2_Fr_s21    params 1880.8K train 87s  17/65/129 = 2.634 / 7.309 / 9.461
+  C2_FNO_s2    params 1879.9K train 57s  17/65/129 = 4.479 / 15.514 / 20.496
+  C2_FNO_s12   params 1879.9K train 57s  17/65/129 = 3.761 / 17.109 / 20.725
+  C2_FNO_s22   params 1879.9K train 57s  17/65/129 = 4.408 / 15.452 / 20.106
+  C3_n16       params 1880.8K train 95s  17/65/129 = 3.461 / 8.895 / 11.270
+  C3_n32       params 1880.8K train 89s  17/65/129 = 2.895 / 8.252 / 10.340
+  C3_n64       params 1880.8K train 89s  17/65/129 = 2.545 / 8.068 / 10.122
+  C4_grid3     params 1880.8K train 92s  17/65/129 = 2.686 / 7.936 / 9.762
+  C4_grid5     params 1880.8K train 89s  17/65/129 = 2.295 / 7.916 / 9.637
+  C4_m6        params 701.2K train 90s  17/65/129 = 2.788 / 7.749 / 9.768
+  C4_m8        params 1217.3K train 92s  17/65/129 = 2.375 / 7.220 / 9.126
+  C4_lr1e3     params 1880.8K train 92s  17/65/129 = 2.510 / 7.720 / 9.684
+  C4_lr3e3     params 1880.8K train 88s  17/65/129 = 2.328 / 7.722 / 9.708
+
+all configurations done -> c_ablation.npz / c_weights.pt

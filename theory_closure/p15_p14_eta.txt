@@ -1,0 +1,6 @@
+[eta] eta=0.020  e_prop=2.6279e-03  (70.8s)
+[eta] eta=0.050  e_prop=6.5876e-03  (70.3s)
+[eta] eta=0.100  e_prop=1.3242e-02  (71.1s)
+[eta] eta=0.200  e_prop=2.6797e-02  (71.7s)
+[eta] eta=0.400  e_prop=5.5264e-02  (68.4s)
+[eta] loglog fitted slope = 1.016  (Proposition 1 expected ~1.00)  R2=0.9999

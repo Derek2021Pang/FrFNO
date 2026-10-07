@@ -1,0 +1,6 @@
+[beta] beta=0.50 e_nl=3.0289e-02 (35.8s)
+[beta] beta=1.00 e_nl=5.9867e-02 (35.8s)
+[beta] beta=2.00 e_nl=1.1616e-01 (35.6s)
+[beta] beta=3.00 e_nl=1.6789e-01 (36.4s)
+[beta] beta=5.00 e_nl=2.5660e-01 (37.3s)
+[beta] e-vs-beta linear R2=0.9905; loglog slope=0.933 (Proposition 1 nonlinear term expected ~1)

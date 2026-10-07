@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Large binaries are tracked via Git LFS (see .gitattributes); nothing is excluded.
+
+# LaTeX build intermediates (PDF kept for convenience)
+paper/*.aux
+paper/*.out
+paper/*.spl
+paper/*.abs
+paper/*.blg
+paper/*.toc
+paper/*.log
+paper/*.synctex.gz
+paper/*.bbl
+paper_SISC/*.aux
+paper_SISC/*.out
+paper_SISC/*.blg
+paper_SISC/*.toc
+paper_SISC/*.log
+paper_SISC/*.synctex.gz
+paper_SISC/*.bbl
+paper_SISC/*.thm
+paper_JCP/*.aux
+paper_JCP/*.out
+paper_JCP/*.blg
+paper_JCP/*.toc
+paper_JCP/*.log
+paper_JCP/*.synctex.gz
+paper_JCP/*.bbl
+paper_JCP/*.abs
+
+# OS
+Thumbs.db
+.DS_Store

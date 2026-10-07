@@ -1,0 +1,54 @@
+ref already done
+[eval] K10_17_FrFNO: mean 16.759% median 16.190%
+[eval] K10_17_FNO: mean 11.928% median 11.238%
+  (N=17 table build + eval 8s)
+[eval] K10_65_FrFNO: mean 10.273% median 9.351%
+[eval] K10_65_FNO: mean 18.010% median 17.494%
+  (N=65 table build + eval 2s)
+[eval] K10_129_FrFNO: mean 10.050% median 8.890%
+[eval] K10_129_FNO: mean 19.499% median 18.925%
+  (N=129 table build + eval 4s)
+[eval] K10_257_FrFNO: mean 10.044% median 8.588%
+[eval] K10_257_FNO: mean 20.331% median 19.350%
+  (N=257 table build + eval 11s)
+[eval] K16_17_FrFNO: mean 16.385% median 15.887%
+[eval] K16_17_FNO: mean 11.735% median 11.148%
+  (N=17 table build + eval 1s)
+[eval] K16_65_FrFNO: mean 11.787% median 11.002%
+[eval] K16_65_FNO: mean 38.342% median 37.222%
+  (N=65 table build + eval 2s)
+[eval] K16_129_FrFNO: mean 12.634% median 11.820%
+[eval] K16_129_FNO: mean 43.405% median 42.142%
+  (N=129 table build + eval 4s)
+[eval] K16_257_FrFNO: mean 13.245% median 12.148%
+[eval] K16_257_FNO: mean 46.026% median 45.397%
+  (N=257 table build + eval 11s)
+[eval] K24_17_FrFNO: mean 16.425% median 15.874%
+[eval] K24_17_FNO: mean 12.860% median 12.540%
+  (N=17 table build + eval 1s)
+[eval] K24_65_FrFNO: mean 13.579% median 12.944%
+[eval] K24_65_FNO: mean 36.186% median 34.791%
+  (N=65 table build + eval 2s)
+[eval] K24_129_FrFNO: mean 15.639% median 15.790%
+[eval] K24_129_FNO: mean 44.672% median 44.464%
+  (N=129 table build + eval 4s)
+[eval] K24_257_FrFNO: mean 16.839% median 16.891%
+[eval] K24_257_FNO: mean 49.335% median 49.144%
+  (N=257 table build + eval 10s)
+eval ALL DONE
+
+===== strict plateau (uniform evaluation by downsampling one 513 ground truth, 48 samples, bootstrap 95% CI) =====
+N^2                FrFNO(K10)              FNO(K10)            FrFNO(K16)              FNO(K16)            FrFNO(K24)              FNO(K24)
+17     16.759[15.368,18.241] 11.928[10.951,12.889] 16.385[15.087,17.730] 11.735[10.729,12.743] 16.425[15.031,17.917] 12.860[11.911,13.830]
+65      10.273[9.033,11.523] 18.010[16.723,19.463] 11.787[10.601,13.047] 38.342[35.867,40.803] 13.579[12.372,14.851] 36.186[34.158,38.494]
+129     10.050[8.857,11.366] 19.499[17.874,21.241] 12.634[11.438,13.869] 43.405[40.545,46.334] 15.639[14.266,17.090] 44.672[41.923,47.469]
+257     10.044[8.824,11.294] 20.331[18.623,22.332] 13.245[11.987,14.619] 46.026[42.614,49.248] 16.839[15.320,18.313] 49.335[46.258,52.513]
+
+--- plateau increment test (FrFNO K10: later minus earlier tier mean difference, bootstrap CI; containing 0 means a statistical plateau) ---
+  FrFNO 17->65: Δ=-6.486% CI[-7.296,-5.742] still significant change
+  FrFNO 65->129: Δ=-0.223% CI[-0.352,-0.103] still significant change
+  FrFNO 129->257: Δ=-0.006% CI[-0.073,+0.060] plateau (contains 0)
+  FNO 17->65: Δ=+6.102% CI[+4.667,+7.752] still significant change
+  FNO 65->129: Δ=+1.496% CI[+1.085,+1.981] still significant change
+  FNO 129->257: Δ=+0.832% CI[+0.599,+1.079] still significant change
+summary DONE -> p0_floor_Kscan.png / p0_summary.npz
