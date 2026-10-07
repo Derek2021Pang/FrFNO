@@ -14,6 +14,7 @@ plt.rcParams.update({'font.size': 11, 'axes.linewidth': 0.8,
 import os as _os, sys as _sys
 _PKG_ROOT = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
 _out_dir = _os.path.join(_os.path.dirname(_PKG_ROOT), 'FrFNO-JSC', 'figs')
+if not _os.path.isdir(_out_dir): _out_dir = _os.path.join(_PKG_ROOT, 'figures')
 _os.makedirs(_out_dir, exist_ok=True)
 out_pdf = _os.path.join(_out_dir, 'speedup_benchmark.pdf')
 out_png = _os.path.join(_out_dir, 'speedup_benchmark.png')

@@ -4,8 +4,12 @@
 Each network trained for the single-step horizon T=0.015 is rolled out
 autoregressively for four steps (each prediction fed back as the next initial
 condition) to reach T=0.06, and compared against the T=0.06 reference solved
-with the same GPU nonlinear solver. This reproduces the claim in Section 5.2
-that every operator degrades sharply under rollout.
+with the same GPU nonlinear solver. This is a supporting diagnostic for the
+qualitative rollout discussion in Section 5.2 (not a numbered table in the
+paper); it shows that every operator degrades sharply under rollout. FrFNO is a
+one-shot propagator design, so feeding its own predictions back is an
+out-of-distribution stress test and its rollout error need not track its
+single-step error.
 
 Uses the 2026-10-06/07 rerun basis: the unified one-dimensional propagator
 table and the Gamma(2-alpha) corrected L1 coefficients (frfno_core.py),

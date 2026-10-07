@@ -20,12 +20,12 @@ root (`ROOT`, matching `OUT_TXT = os.path.join(ROOT, ...)` inside each driver).
 | 4 | Table B4 (Sec 5.5) | integer-order, all methods | `b4_integer.py` (root) | `b4_result.txt` | 2026-10-06 |
 | 5 | Table per-query cost (Sec 5.6) | direct vs FrFNO timing | `sec5_6_speedup/speedup_benchmark.py` | `speedup_benchmark_result.txt` | 2026-10-06 |
 | 6 | Table break-even / offline (Sec 5.6) | cost analysis | `sec5_6_speedup/speedup_benchmark.py` | `speedup_benchmark_result.txt` | 2026-10-06 |
-| 7 | Fig. total wall-clock (Sec 5.6) | figure | `sec5_6_speedup/plot_speedup.py` | `../FrFNO-JSC/figs/speedup_benchmark.pdf/.png` | 2026-10-07 |
-| 8 | Table C1 (Sec 5.8 / SM S3) | B1 component ablation | `sec5_8_ablation/c_ablation.py` | `c_ablation_result.txt`, `c_ablation.npz`, `c_weights.pt` | 2026-10-07 |
+| 7 | Fig. total wall-clock (Sec 5.6) | figure | `sec5_6_speedup/plot_speedup.py` | paper `figs/speedup_benchmark.pdf/.png` (parent `FrFNO-JSC` dir if present, else `./figures/`) | 2026-10-07 |
+| 8 | Table C1 (Sec 5.8 / SM S3) | B1 component ablation | `sec5_8_ablation/c_ablation.py` | `c_ablation_result.txt`, `c_ablation.npz`, `c_weights.pt`; seed-wise errors for the rigor Seeds row in `c_ablation_seeds_result.txt` (extracted from `c_ablation.npz`) | 2026-10-07 |
 | 9 | Table C2 (Sec 5.8 / SM S3) | B2 component ablation | `sec5_8_ablation/b2_ablation.py` | `b2_ablation_result.txt`, `b2_ablation.npz` | 2026-10-06 |
-| 10 | Exp.1–2 (Sec 5.7) | theory verification | `sec5_7_theory/theory_verify.py` | `theory_verify_result.txt` | 2026-10-06 |
+| 10 | Exp.1–2 (Sec 5.7) | theory verification (Exp.1 uses the frozen-$513^2$ protocol, same basis as Tables S4/S5; Exp.2 the $s$-scan) | `sec5_7_theory/theory_verify.py` | `theory_verify_result.txt` | 2026-10-07 |
 | 11 | Exp.3–4 (Sec 5.7/App.) | slopes T, η, β, Born ratio | `sec5_7_theory/theory_closure/theory_p15_p14.py` | `theory_closure/p15_p14_{T,eta,beta,spec,summary}.txt` | 2026-10-06 |
-| 12 | Exp.5 (Sec 5.7/App.) | error floor / two-bandwidth / spectral tail / K-bottleneck | `sec5_7_theory/theory_closure/p0_platform.py`, `both_train.py`, `p0_both_eval.py`, `kscan_train.py`, `trscan_train.py`, `p0_trscan.py`, `exp5_supplement.py`, `exp5_validate.py` | `theory_closure/p0_platform.log`, `p0_both_eval.log`, `p0_trscan.log`, `exp5_supp.log`, `exp5_validate.log`, `kscan_rerun_20261006.log`, `trscan32/64_rerun_20261006.log`, `both1632/2464_rerun_20261006.log`, `kscan_N64_rerun_20261006.log`, `p0_*.npz`, `exp5_*.npz` | 2026-10-06 |
+| 12 | Exp.5 (Sec 5.7/App.) | error floor / two-bandwidth / spectral tail / K-bottleneck (note: `p0_trscan.log` is the training-resolution-axis scan at fixed $K$; `p0_both_eval.log` is the $K$-and-grid-enlarged-together scan; the SM grid column cites `p0_both_eval.log`) | `sec5_7_theory/theory_closure/p0_platform.py`, `both_train.py`, `p0_both_eval.py`, `kscan_train.py`, `trscan_train.py`, `p0_trscan.py`, `exp5_supplement.py`, `exp5_validate.py` | `theory_closure/p0_platform.log`, `p0_both_eval.log`, `p0_trscan.log`, `exp5_supp.log`, `exp5_validate.log`, `kscan_rerun_20261006.log`, `trscan32/64_rerun_20261006.log`, `both1632/2464_rerun_20261006.log`, `kscan_N64_rerun_20261006.log`, `p0_*.npz`, `exp5_*.npz` | 2026-10-06 |
 | 13 | Table breadth (Sec 5.9) | periodic Riesz | `sec5_9_breadth/riesz_periodic_check.py` | `riesz_periodic_result.txt` | 2026-10-06 |
 | 14 | Table breadth (Sec 5.9) | diffusion/Fisher/Allen-Cahn | `sec5_9_breadth/reaction_diffusion_check.py` | `reaction_diffusion_result.txt` | 2026-10-06 |
 | 15 | Table breadth (Sec 5.9) | 2-D vector Burgers | `sec5_9_breadth/system_burgers_check.py` | `system_burgers_result.txt` | 2026-10-06 |
@@ -33,14 +33,16 @@ root (`ROOT`, matching `OUT_TXT = os.path.join(ROOT, ...)` inside each driver).
 | 17 | Table breadth (Sec 5.9) | 2-D fractional NS | `sec5_9_breadth/ns_vorticity_check.py` | `ns_vorticity_result.txt` | 2026-10-06 |
 | 18 | Table breadth (Sec 5.9) | 3-D fractional NS | `sec5_9_breadth/ns3d_vorticity_check.py` | `ns3d_result.txt` | 2026-10-06 |
 | 19 | Appendix MMS table | convergence orders + weak singularity | `appendixA_code_verification/mms_convergence.py` | `mms_result.txt` | 10-05 (confirmed no rerun) |
-| 20 | Fig. modal decay | analytic schematic | `figures/make_modal_decay_fig.py` | `../FrFNO-JSC/figs/modal_decay_vs_T.pdf/.png` | — |
-| 21 | Fig. B1 snapshot | solution field | `sec5_2_B1_main/plot_structure_b1.py` | `../FrFNO-JSC/figs/fig_snapshot_structure.png` | 2026-10-07 |
-| 22 | Fig. B1 band filling | per-mode phase error | `sec5_2_B1_main/plot_band_filling.py` | `../FrFNO-JSC/figs/fig_band_filling.png` | 2026-10-07 |
+| 20 | Fig. modal decay | analytic schematic | `figures/make_modal_decay_fig.py` | `figures/modal_decay_vs_T.pdf/.png` | — |
+| 21 | Fig. B1 snapshot | solution field | `sec5_2_B1_main/plot_structure_b1.py` | paper `figs/fig_snapshot_structure.png` (parent dir if present, else `./figures/`) | 2026-10-07 |
+| 22 | Fig. B1 band filling | per-mode phase error | `sec5_2_B1_main/plot_band_filling.py` | paper `figs/fig_band_filling.png` (parent dir if present, else `./figures/`) | 2026-10-07 |
 | 23 | Fig. 1 architecture | hand-drawn (not generated) | — | `../FrFNO-JSC/figs/{FrFNO,FNO}_architecture.pdf` | — |
 | 24 | Algorithm 1 (offline table) | code | `frfno_core.build_prop_table_1d` | — | — |
 | 25 | Algorithm 2 (training) | code | `frfno_core.DualNet` + `b1_burgers.train` | — | — |
 | 26 | Algorithm 3 (inference) | code | `frfno_core.ub_full_batch/prop_at` + `DualNet.forward` | — | — |
 | 27 | Table model parameter counts | code | `models_surrogate.n_params`, `models_extra` | printed by each benchmark | — |
+| 28 | rollout diagnostic (Sec 5.2) | per-step error decomposition, input-perturbation sensitivity, linear-propagator time-shift (memory-restart) error | `rollout_diagnose.py` (root) | `rollout_diagnose_result.txt` | 2026-10-07 |
+| 29 | semigroup test (Sec 5.2) | pure linear-table check $E(2\tau)u_0$ vs $E(\tau)E(\tau)u_0$ over $\alpha$, incl.\ integer-order limit | `semigroup_test.py` (root) | `semigroup_test_result.txt` | 2026-10-07 |
 
 ## Notes
 

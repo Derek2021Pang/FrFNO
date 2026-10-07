@@ -1,9 +1,10 @@
-
-########## Exp1 error floor (fixed K=10, B1 weights, matched dt refinement) ##########
-  N= 17^2  FrFNO= 1.740%  FNO= 2.840%  ratio= 1.63  (table 7s/ground-truth 3s/eval 1s)
-  N= 65^2  FrFNO= 7.824%  FNO=22.939%  ratio= 2.93  (table 1s/ground-truth 4s/eval 1s)
-  N=129^2  FrFNO= 9.464%  FNO=26.853%  ratio= 2.84  (table 3s/ground-truth 9s/eval 1s)
-  N=257^2  FrFNO=10.377%  FNO=28.819%  ratio= 2.78  (table 10s/ground-truth 193s/eval 1s)
+########## Exp1 error floor (fixed K=10, B1 weights, frozen 513^2 truth protocol, 48 held-out fields) ##########
+# Numbers read from theory_closure/p0_platform.log, the basis of SM Table S4.
+# The earlier matched-dt refinement protocol (10.377%/28.819%) is superseded and removed.
+  N= 17^2  FrFNO=16.759%  FNO=11.928%  ratio= 0.71
+  N= 65^2  FrFNO=10.273%  FNO=18.010%  ratio= 1.75
+  N=129^2  FrFNO=10.050%  FNO=19.499%  ratio= 1.94
+  N=257^2  FrFNO=10.044%  FNO=20.331%  ratio= 2.02
 
 ########## Exp2 s-scan (B4 weights, alpha=.85, 129^2, advantage ~K^{2s}) ##########
   s=0.40  FrFNO=14.026%  FNO=18.229%  ratio R= 1.30  K^{2s}= 6.31

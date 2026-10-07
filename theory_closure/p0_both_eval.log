@@ -1,3 +1,6 @@
+# p0_both_eval.log -- K and training grid enlarged together (both K and N0 vary).
+# Single frozen 513^2 truth, 48 held-out fields, bootstrap 95% CI.
+# This is the basis of the SM Table S5 grid column and the Exp.5 floor discussion.
   loaded K10_N16 (baseline): K=10, Nx_tr=16, pad=4, MEAN=0.0052, SV=0.2338
   loaded K16_N16 (K only): K=16, Nx_tr=16, pad=15, MEAN=0.0052, SV=0.2338
   loaded K24_N16 (K only): K=24, Nx_tr=16, pad=31, MEAN=0.0052, SV=0.2338

@@ -1,0 +1,24 @@
+rebuilding B1 training ground truth for MEAN/SV (one-time, ~minutes)...
+MEAN=0.0052 SV=0.2338 (26s)
+loaded b1_weights.pt (FrFNO, FNO)
+
+===== diagnostic at 17^2 (Nt=400 truth) =====
+  FrFNO  per-step rel L2 (vs same-time truth):  step1   1.687%  step2  23.151%  step3  38.694%  step4  50.081%
+  FNO    per-step rel L2 (vs same-time truth):  step1   2.608%  step2  19.350%  step3  30.703%  step4  38.440%
+  linear-prop shift error E(tau)u(0.015) vs u(0.030):  mean 22.811%
+  FrFNO  sensitivity (2%-RMS input delta):  linear 0.469  residual 0.172  total 0.422
+  FNO    sensitivity (2%-RMS input delta):  total 0.450
+  FrFNO  17^2 error spectrum: low-k share step1 0.91  step4 1.00
+  FNO    17^2 error spectrum: low-k share step1 0.87  step4 1.00
+
+===== diagnostic at 129^2 (Nt=6400 truth) =====
+  FrFNO  per-step rel L2 (vs T=0.06 truth; off-time refs):  step1  78.531%  step2  21.888%  step3  29.662%  step4  49.813%
+  FNO    per-step rel L2 (vs T=0.06 truth; off-time refs):  step1  83.404%  step2  39.311%  step3  43.665%  step4  54.466%
+  FrFNO  sensitivity (2%-RMS input delta):  linear 0.091  residual 0.103  total 0.147
+  FNO    sensitivity (2%-RMS input delta):  total 0.450
+
+========= diagnostic summary =========
+(A) per-step errors isolate WHICH step explodes.
+(B) sensitivity separates the linear propagator from the residual network for FrFNO.
+(C) low-k share of the error shows whether low-frequency modes accumulate.
+done.

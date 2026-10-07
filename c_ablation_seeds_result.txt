@@ -1,0 +1,13 @@
+########## C2 multiple-seed errors (SM Table S3, rigor Seeds row; 129^2 evaluation tier) ##########
+# Extracted from c_ablation.npz keys C2_Fr_s11/C2_Fr_s21/C1_full (FrFNO seeds 11/21/1) and
+# C2_FNO_s2/C2_FNO_s12/C2_FNO_s22 (FNO seeds 2/12/22). All configurations: full model,
+# modes=10, lr=0.0015, ntr=128, order grid 9, trained with the unified 1-D propagator table
+# and the Gamma(2-alpha) corrected L1 coefficients (2026-10-06/07 rerun).
+  FrFNO  seed=11   129^2 =  9.783%
+  FrFNO  seed=21   129^2 =  9.461%
+  FrFNO  seed=1    129^2 =  9.876%
+  FNO    seed=2    129^2 = 20.496%
+  FNO    seed=12   129^2 = 20.725%
+  FNO    seed=22   129^2 = 20.106%
+  FrFNO min/max: 9.461% / 9.876%  (SM row 9.46-9.88)
+  FNO   min/max: 20.106% / 20.725%  (SM row 20.11-20.73)

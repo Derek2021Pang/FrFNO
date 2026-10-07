@@ -73,8 +73,10 @@ def main():
     axx.axvline(8, color='gray', ls=':'); axx.set_title('mean phase error vs |k|')
     axx.set_xlabel('wavenumber |k|'); axx.set_ylabel('|phase diff| (rad)'); axx.legend(fontsize=8); axx.grid(alpha=.3)
     fig.tight_layout()
-    out = _os.path.join(_os.path.dirname(_PKG_ROOT), 'FrFNO-JSC', 'figs', 'fig_snapshot_structure.png')
-    _os.makedirs(_os.path.dirname(out), exist_ok=True)
+    _fig_dir = _os.path.join(_os.path.dirname(_PKG_ROOT), 'FrFNO-JSC', 'figs')
+    if not _os.path.isdir(_fig_dir): _fig_dir = _os.path.join(_PKG_ROOT, 'figures')
+    _os.makedirs(_fig_dir, exist_ok=True)
+    out = _os.path.join(_fig_dir, 'fig_snapshot_structure.png')
     plt.savefig(out, dpi=190); print('saved', out)
 
 if __name__ == '__main__':

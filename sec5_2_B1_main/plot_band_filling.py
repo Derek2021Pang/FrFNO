@@ -101,8 +101,10 @@ def main():
     ax2.legend(fontsize=11); ax2.grid(True, alpha=.3)
 
     plt.tight_layout()
-    out = _os.path.join(_os.path.dirname(_PKG_ROOT), 'FrFNO-JSC', 'figs', 'fig_band_filling.png')
-    _os.makedirs(_os.path.dirname(out), exist_ok=True)
+    _fig_dir = _os.path.join(_os.path.dirname(_PKG_ROOT), 'FrFNO-JSC', 'figs')
+    if not _os.path.isdir(_fig_dir): _fig_dir = _os.path.join(_PKG_ROOT, 'figures')
+    _os.makedirs(_fig_dir, exist_ok=True)
+    out = _os.path.join(_fig_dir, 'fig_band_filling.png')
     plt.savefig(out, dpi=200); print('saved', out)
 
 if __name__ == '__main__':

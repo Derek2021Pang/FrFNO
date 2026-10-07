@@ -111,8 +111,10 @@ def main():
     plt.xlabel('wavenumber |k|'); plt.ylabel('radial power spectrum E(k)')
     plt.title('Nonlinear fractional Burgers: 17$^2$ train $\\rightarrow$ 129$^2$ zero-shot')
     plt.legend(); plt.grid(True, which='both', alpha=.3); plt.tight_layout()
-    out = _os.path.join(_os.path.dirname(_PKG_ROOT), 'FrFNO-JSC', 'figs', 'fig_radial_spectrum.png')
-    _os.makedirs(_os.path.dirname(out), exist_ok=True)
+    _fig_dir = _os.path.join(_os.path.dirname(_PKG_ROOT), 'FrFNO-JSC', 'figs')
+    if not _os.path.isdir(_fig_dir): _fig_dir = _os.path.join(_PKG_ROOT, 'figures')
+    _os.makedirs(_fig_dir, exist_ok=True)
+    out = _os.path.join(_fig_dir, 'fig_radial_spectrum.png')
     plt.savefig(out, dpi=200); print('saved', out)
 
 if __name__ == '__main__':

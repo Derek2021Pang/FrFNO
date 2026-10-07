@@ -1,0 +1,7 @@
+# Semigroup test of the 1-D propagator table at 17^2.
+# err = ||E(2tau)u0 - E(tau)E(tau)u0|| / ||E(2tau)u0||  (mean over 12 fields, s=0.5).
+  alpha=0.35  semigroup violation  61.692%
+  alpha=0.55  semigroup violation  38.539%
+  alpha=0.75  semigroup violation  16.048%
+  alpha=0.95  semigroup violation   1.840%
+  alpha=1.00  semigroup violation   0.023%

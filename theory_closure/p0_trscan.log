@@ -1,3 +1,7 @@
+# p0_trscan.log -- training-resolution-axis scan (N0 = 17/33/65) at fixed K = 10.
+# Single frozen 513^2 truth, 48 held-out fields, bootstrap 95% CI.
+# This scan is complementary to p0_both_eval.log (K and training grid enlarged together).
+# SM Table S5 cites p0_both_eval.log (not this scan) for its grid column.
 evaltr DONE
 
 ===== training-resolution axis (fixed K=10; single 513 ground truth; 48 samples, bootstrap 95% CI) =====

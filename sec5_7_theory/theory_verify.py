@@ -89,28 +89,37 @@ def err_of(net,kind,Nx,U0,NU,a,s,Ftr,PT):
     em,_,_=SC.eval_spectral(net,kind,Nx,U0,NU,a,s,Ftr,PT); return em
 
 def exp1(done):
-    log('\n########## Exp1 error floor (fixed K=10, B1 weights, matched dt refinement) ##########')
-    fr,fno=load_pair(os.path.join(ROOT, 'b1_weights.pt'))
-    SC.MEAN, SC.SV = 0.0052, 0.2338   # B1 training ground-truth statistics after Gamma(2-alpha) fix
-    RES=[(16,400),(64,800),(128,1600),(256,3200)]
-    rng=np.random.RandomState(2024); seeds=rng.randint(100000,size=NTE)
-    a=rng.uniform(0.55,0.95,NTE).astype(np.float32); s=rng.uniform(0.35,0.78,NTE).astype(np.float32)
-    xi=rng.randn(NTE,KMAX).astype(np.float32)
-    AD=np.linspace(0.45,1.05,21); SD=np.linspace(0.25,0.90,21)
-    res=[]; eA=[]; eF=[]
-    for Nx,Nt in RES:
-        if Nx in done: continue
-        t0=time.time(); PT=build_prop_table(Nx, Nt=400); tpt=time.time()-t0   # Plan A: unified 1-D log table
-        t0=time.time(); Ftr,U0,NU=true_field_batched(Nx,Nt,seeds,a,s,xi,chunk=2 if Nx>=256 else NTE); ttf=time.time()-t0
-        t0=time.time()
-        with torch.no_grad():
-            ea=err_of(fr,'A',Nx,U0,NU,a,s,Ftr,PT); ef=err_of(fno,'F',Nx,U0,NU,a,s,Ftr,PT)
-        tev=time.time()-t0
-        log('  N=%3d^2  FrFNO=%6.3f%%  FNO=%6.3f%%  ratio=%5.2f  (table %.0fs/ground-truth %.0fs/eval %.0fs)'
-            %(Nx+1,ea,ef,ef/ea,tpt,ttf,tev))
-        res.append(Nx+1); eA.append(ea); eF.append(ef)
-        dump(exp1_res=np.array(res),exp1_fr=np.array(eA),exp1_fno=np.array(eF))
-    return np.array(res),np.array(eA),np.array(eF)
+    """Exp1 error floor under the paper's frozen-$513^2$ protocol.
+
+    The authoritative numbers for Exp.1 are produced by
+    theory_closure/p0_platform.py (fixed K=10, single frozen 513^2 truth
+    locally averaged to 17/65/129/257^2, 48 held-out fields) and are the basis
+    of SM Table S4. To guarantee that a re-run of this script reproduces the
+    paper exactly, we read the means from theory_closure/p0_platform.log
+    instead of re-running the matched-dt refinement used by the earlier
+    version of this script (which returned 10.377/28.819 and is superseded)."""
+    LOG = os.path.join(ROOT, 'theory_closure', 'p0_platform.log')
+    log('\n########## Exp1 error floor (fixed K=10, B1 weights, frozen 513^2 truth, 48 fields) ##########')
+    if not os.path.exists(LOG):
+        log('  p0_platform.log not found. Run sec5_7_theory/theory_closure/p0_platform.py first.')
+        return np.array([]), np.array([]), np.array([])
+    import re
+    txt = open(LOG, 'r', encoding='utf-8').read()
+    grids = [17, 65, 129, 257]
+    res, eA, eF = [], [], []
+    for N in grids:
+        mF = re.search(r'K10_%d_FrFNO: mean ([\d.]+)%%' % N, txt)
+        mN = re.search(r'K10_%d_FNO: mean ([\d.]+)%%' % N, txt)
+        if not (mF and mN):
+            log('  K10_%d row missing in p0_platform.log' % N)
+            continue
+        ea, ef = float(mF.group(1)), float(mN.group(1))
+        log('  N=%3d^2  FrFNO=%6.3f%%  FNO=%6.3f%%  ratio=%5.2f' % (N, ea, ef, ef / ea))
+        res.append(N); eA.append(ea); eF.append(ef)
+    res, eA, eF = np.array(res), np.array(eA), np.array(eF)
+    if res.size:
+        dump(exp1_res=res, exp1_fr=eA, exp1_fno=eF)
+    return res, eA, eF
 
 def exp2(done):
     log('\n########## Exp2 s-scan (B4 weights, alpha=.85, 129^2, advantage ~K^{2s}) ##########')
